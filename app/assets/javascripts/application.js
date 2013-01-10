@@ -15,6 +15,11 @@
 //= require leaflet
 //= require leaflet.draw
 //= require pica
+//= require underscore-min
+//= require json2
+//= require backbone-min
+//= require diorama/diorama_managed_region
+//= require diorama/diorama_controller
 //= require_tree .
 
 $(document).ready(function() {
@@ -47,14 +52,9 @@ $(document).ready(function() {
 
   // Show our custom PolyActionsView when any of the polygons are clicked
   showAreaPolygonsView.on("polygonClick", function(polygon, event) {
-    new PicaExample.PolyActionsView(polygon, event);
+    new PicaAnalysis.PolyActionsView(polygon, event);
   });
 
-  // The area view listens for the currentArea 'sync' event, and displays the stats
-  new PicaExample.AreaView("#area-stats");
-
-  // Draw a new polygon view when user clicks add button
-  $('#add-polygon-btn').click(function() {
-    window.pica.currentWorkspace.currentArea.drawNewPolygonView();
-  });
+  var view = new Backbone.Views.WorkspaceShow();
+  $('#sidebar').html(view.render().el);
 });
