@@ -1,3 +1,27 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#map {
+  position: absolute;
+  top: 80px;
+  bottom: 0;
+  left: 0;
+  right: 330px;
+}
+
+#sidebar {
+  width: 320px;
+  float:right;
+}
+
+.sidebar-tabs {
+  overflow: hidden;
+  margin: 0;
+  padding-left: 0;
+}
+.sidebar-tabs li{
+  list-style-type: none;
+  float:left;
+  padding: 7px;
+}
