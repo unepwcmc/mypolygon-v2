@@ -8,6 +8,7 @@ class Backbone.Views.AreaView extends Backbone.View
 
   initialize: (options) ->
     @area = options.area
+    @area.on('sync', @render)
 
   toggleDrawing: (event) ->
     $el = $(event.target)
@@ -25,8 +26,9 @@ class Backbone.Views.AreaView extends Backbone.View
       @polygonView.close()
       delete @polygonView
 
-  close: () ->
+  onClose: () ->
     @removeNewPolygonView()
+    @area.off('sync', @render)
 
   render: =>
     $(@el).html(@template(area: @area))
