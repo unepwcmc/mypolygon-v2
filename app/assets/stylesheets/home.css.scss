@@ -2,26 +2,88 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+body {
+  background-color: #EEEEEE;
+  font: 12px Arial, Helvetica, sans-serif;
+  color: #666;
+  padding: 0;
+  margin: 0;
+}
+
+#header-strip {
+  padding:  7px 10px;
+  border-bottom: 1px solid #444;
+
+  background-image: linear-gradient(bottom, rgb(0,74,114) 12%, rgb(0,83,124) 67%, rgb(0,91,136) 100%);
+  background-image: -o-linear-gradient(bottom, rgb(0,74,114) 12%, rgb(0,83,124) 67%, rgb(0,91,136) 100%);
+  background-image: -moz-linear-gradient(bottom, rgb(0,74,114) 12%, rgb(0,83,124) 67%, rgb(0,91,136) 100%);
+  background-image: -webkit-linear-gradient(bottom, rgb(0,74,114) 12%, rgb(0,83,124) 67%, rgb(0,91,136) 100%);
+  background-image: -ms-linear-gradient(bottom, rgb(0,74,114) 12%, rgb(0,83,124) 67%, rgb(0,91,136) 100%);
+
+  background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.12, rgb(0,74,114)),
+    color-stop(0.67, rgb(0,83,124)),
+    color-stop(1, rgb(0,91,136))
+  );
+
+  h1 {
+    font: normal 20px "Lucida Grande", Arial;
+    color: white;
+    text-shadow: 0 -1px #00324C;
+    text-decoration: none;
+    margin: 0;
+  }
+}
+
 #map {
   position: absolute;
-  top: 80px;
+  top: 38px;
   bottom: 0;
   left: 0;
-  right: 330px;
+  right: 340px;
 }
 
 #sidebar {
-  width: 320px;
+  width: 326px;
   float:right;
+  padding: 7px;
+  color: #666;
+  font: normal 17px Arial;
+  line-height: 23px;
 }
 
+
 .sidebar-tabs {
-  overflow: hidden;
+  overflow: visible;
   margin: 0;
   padding-left: 0;
+  height: 37px;
 }
+
 .sidebar-tabs li{
   list-style-type: none;
   float:left;
+  padding: 7px;
+  font-weight: bold;
+  margin-top: 1px;
+}
+.sidebar-tabs li a{
+  color: #666;
+  text-decoration: none;
+}
+
+.sidebar-tabs li.active{
+  background: white;
+  border: 1px solid #CCC;
+  border-bottom: 0px;
+  margin-top: 0;
+}
+
+.tab-content {
+  background: white;
+  border: 1px solid #CCC;
   padding: 7px;
 }
