@@ -27,7 +27,7 @@ $(document).ready(function() {
 
   // Create a leaflet map to use
   map = L.map('map',{
-    center: [24.5,54],
+    center: [54, 24.5],
     minZoom: 7,
     zoom: 9
   });
@@ -46,14 +46,6 @@ $(document).ready(function() {
 
   // Create a new workspace to work in
   window.pica.newWorkspace();
-
-  // Show drawn polygons on the map
-  var showAreaPolygonsView = window.pica.currentWorkspace.currentArea.newShowAreaPolygonsView();
-
-  // Show our custom PolyActionsView when any of the polygons are clicked
-  showAreaPolygonsView.on("polygonClick", function(polygon, event) {
-    new PicaAnalysis.PolyActionsView(polygon, event);
-  });
 
   var view = new Backbone.Views.WorkspaceShow();
   $('#sidebar').html(view.render().el);

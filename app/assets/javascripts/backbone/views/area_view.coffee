@@ -10,15 +10,20 @@ class Backbone.Views.AreaView extends Backbone.View
     @area = options.area
     @area.on('sync', @render)
 
+    @showAreaPolygonsView = window.pica.currentWorkspace.currentArea.newShowAreaPolygonsView()
+
   toggleDrawing: (event) ->
     $el = $(event.target)
 
     if @polygonView?
       @removeNewPolygonView()
     else
-      @polygonView = window.pica.currentWorkspace.currentArea.drawNewPolygonView(() =>
-        @removeNewPolygonView()
-        @render()
+      @polygonView = @area.drawNewPolygonView(
+        success: () =>
+          @removeNewPolygonView()
+          @render()
+        error: (xhr, textStatus, errorThrown) =>
+          alert("Can't save polygon: #{errorThrown}")
       )
 
   removeNewPolygonView: ->
@@ -28,6 +33,7 @@ class Backbone.Views.AreaView extends Backbone.View
 
   onClose: () ->
     @removeNewPolygonView()
+    @showAreaPolygonsView.close()
     @area.off('sync', @render)
 
   render: =>
