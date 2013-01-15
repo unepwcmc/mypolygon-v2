@@ -1,12 +1,10 @@
-<form id="new-area" name="area">
-  <button class="btn btn-primary" id="add-polygon">
-    <% if (area.polygons.length > 0) { %>
-      Draw another polygon
-    <% } else { %>
-      Draw a polygon
-    <% } %>
-  </button>
-</form>
+<button class="btn btn-primary" id="add-polygon">
+<% if (area.polygons.length > 0) { %>
+  Draw another polygon
+<% } else { %>
+  Draw a polygon
+<% } %>
+</button>
 
 <% if (area.polygons.length > 0) { %>
   <h3>Stats</h3>
