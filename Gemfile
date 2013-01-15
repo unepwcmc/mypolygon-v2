@@ -35,6 +35,13 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'debugger'
 
+group :development do
+  # Deploy with Capistrano
+  gem 'capistrano'
+  gem 'capistrano-ext'
+  gem 'brightbox'
+end
+
 group :test, :development do
   gem 'sqlite3'
   gem 'rspec-rails', '~> 2.0'
@@ -44,4 +51,9 @@ group :test do
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
   gem 'webrat'
+end
+
+group :production do
+  # Deploy with Capistrano
+  gem 'pg'
 end
