@@ -1,6 +1,6 @@
 Backbone.Views ||= {}
 
-class Backbone.Views.WorkspaceShow extends Backbone.View
+class Backbone.Views.WorkspaceShowView extends Backbone.View
   template: JST["backbone/templates/area_tabs"]
 
   events:

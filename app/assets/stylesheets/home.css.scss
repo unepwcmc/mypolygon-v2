@@ -55,6 +55,28 @@ body {
   line-height: 23px;
 }
 
+.btn {
+  border-radius: 3px;
+  border: 0;
+  background-color: #069;
+  font: bold 15px Arial;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 3px;
+
+  background-image: linear-gradient(bottom, rgb(0,74,114) 12%, rgb(0,83,124) 67%, rgb(0,91,136) 100%);
+  background-image: -o-linear-gradient(bottom, rgb(0,74,114) 12%, rgb(0,83,124) 67%, rgb(0,91,136) 100%);
+  background-image: -moz-linear-gradient(bottom, rgb(0,74,114) 12%, rgb(0,83,124) 67%, rgb(0,91,136) 100%);
+  background-image: -webkit-linear-gradient(bottom, rgb(0,74,114) 12%, rgb(0,83,124) 67%, rgb(0,91,136) 100%);
+  background-image: -ms-linear-gradient(bottom, rgb(0,74,114) 12%, rgb(0,83,124) 67%, rgb(0,91,136) 100%);
+}
+.btn:hover {
+  background-image: linear-gradient(bottom, rgb(0,91,136) 12%, rgb(0,83,124) 67%, rgb(0,74,114) 100%);
+  background-image: -o-linear-gradient(bottom, rgb(0,91,136) 12%, rgb(0,83,124) 67%, rgb(0,74,114) 100%);
+  background-image: -moz-linear-gradient(bottom, rgb(0,91,136) 12%, rgb(0,83,124) 67%, rgb(0,74,114) 100%);
+  background-image: -webkit-linear-gradient(bottom, rgb(0,91,136) 12%, rgb(0,83,124) 67%, rgb(0,74,114) 100%);
+  background-image: -ms-linear-gradient(bottom, rgb(0,91,136) 12%, rgb(0,83,124) 67%, rgb(0,74,114) 100%);
+}
 
 .sidebar-tabs {
   overflow: visible;
@@ -80,10 +102,49 @@ body {
   border: 1px solid #CCC;
   border-bottom: 0px;
   margin-top: 0;
+  a {
+    color: #333;
+  }
 }
 
 .tab-content {
   background: white;
   border: 1px solid #CCC;
   padding: 7px;
+}
+
+.area-show {
+  h3 {
+    margin-bottom: 0px;
+    border-bottom: 1px solid #DDD;
+    color: #333;
+  }
+}
+#add-polygon {
+  margin: 10px auto;
+  display: block;
+}
+
+#poly-stat-list {
+  margin: 5px 0;
+  padding-left: 8px;
+
+  li {
+    overflow:hidden;
+    border-top: 1px solid #EEE;
+
+    .result {
+      float:right;
+      .value {
+        font-weight: bold;
+        font-size: 20px;
+      }
+      .unit {
+        font-size: 10px;
+      }
+    }
+  }
+  li:first-child {
+    border-top: 0px
+  }
 }

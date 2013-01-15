@@ -1,10 +1,11 @@
 Backbone.Views ||= {}
 
 class Backbone.Views.AreaView extends Backbone.View
+  className: 'area-show'
   template: JST["backbone/templates/area"]
 
   events:
-    'click .btn-add-polygon': 'toggleDrawing'
+    'click #add-polygon': 'toggleDrawing'
 
   initialize: (options) ->
     @area = options.area

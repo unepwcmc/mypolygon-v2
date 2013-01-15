@@ -44,11 +44,8 @@ $(document).ready(function() {
     map: map
   });
 
-  // Create a new workspace to work in
-  window.pica.newWorkspace();
-
-  var view = new Backbone.Views.WorkspaceShow();
-  $('#sidebar').html(view.render().el);
+  var mainController = new Backbone.Controllers.MainController();
+  $('#sidebar').html(mainController.$el);
 });
 
 // Upload file (http://stackoverflow.com/questions/6718664/is-it-possible-to-peform-an-asynchronous-cross-domain-file-upload)
