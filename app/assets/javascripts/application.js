@@ -40,9 +40,11 @@ $(document).ready(function() {
   // Start a new pica application, with the given options
   window.pica = new Pica.Application({
     magpieUrl: "http://magpie.unepwcmc-005.vm.brightbox.net",
-    projectId: 4,
+    projectId: 5,
     map: map
   });
+  
+  var tileLayerView = pica.showTileLayers();
 
   var mainController = new Backbone.Controllers.MainController();
   $('#sidebar').html(mainController.$el);
