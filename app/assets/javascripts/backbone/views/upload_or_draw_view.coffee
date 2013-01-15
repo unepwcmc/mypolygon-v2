@@ -5,6 +5,7 @@ class Backbone.Views.UploadOrDrawView extends Backbone.View
   template: JST['backbone/templates/upload_or_draw']
   events: 
     "click #start-draw": "triggerShowNewWorkspace"
+    "click #start-upload": "triggerStartUpload"
 
   initialize: (options) ->
     @render()
@@ -15,5 +16,8 @@ class Backbone.Views.UploadOrDrawView extends Backbone.View
   triggerShowNewWorkspace: =>
     window.pica.newWorkspace()
     @trigger('showWorkspace')
+
+  triggerStartUpload: =>
+    @trigger('startUpload')
 
   onClose: ->

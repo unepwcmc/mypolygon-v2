@@ -1,8 +1,8 @@
 window.Backbone ||= {}
 window.Backbone.Views ||= {}
 
-class Backbone.Views.MainUploadFileView extends Backbone.View
-  template: JST['main/uploadfile']
+class Backbone.Views.UploadFileView extends Backbone.View
+  template: JST['backbone/templates/upload_file_view']
 
   initialize: (options) ->
     @render()
