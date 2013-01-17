@@ -50,6 +50,7 @@ $(document).ready(function() {
   $('#sidebar').html(mainController.$el);
 });
 
+/*
 // Upload file (http://stackoverflow.com/questions/6718664/is-it-possible-to-peform-an-asynchronous-cross-domain-file-upload)
 $(document).ready(function() {
   var form = $('form')
@@ -83,3 +84,4 @@ $(document).ready(function() {
     return false;
   });
 });
+*/

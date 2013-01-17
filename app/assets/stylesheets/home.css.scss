@@ -129,7 +129,8 @@ body {
     color: #333;
   }
 }
-#add-polygon {
+#add-polygon,
+#add-circle  {
   margin: 10px auto;
   display: block;
 }
@@ -155,5 +156,17 @@ body {
   }
   li:first-child {
     border-top: 0px
+  }
+}
+
+form {
+  .fields {
+    overflow: hidden;
+    label {
+      float:left;
+    }
+    input {
+      float:right;
+    }
   }
 }

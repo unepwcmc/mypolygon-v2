@@ -6,6 +6,7 @@ class Backbone.Views.AreaView extends Backbone.View
 
   events:
     'click #add-polygon': 'toggleDrawing'
+    'click #add-circle': 'toggleDrawing'
 
   initialize: (options) ->
     @area = options.area
@@ -15,11 +16,12 @@ class Backbone.Views.AreaView extends Backbone.View
 
   toggleDrawing: (event) ->
     $el = $(event.target)
+    type = $el.attr('data-type')
 
     if @polygonView?
       @removeNewPolygonView()
     else
-      @polygonView = @area.drawNewPolygonView(
+      @polygonView = @area["drawNew#{type}View"].call(@area,
         success: () =>
           @removeNewPolygonView()
           @render()
