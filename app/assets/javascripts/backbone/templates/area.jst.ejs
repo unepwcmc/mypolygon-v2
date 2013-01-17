@@ -14,19 +14,35 @@
 </button>
 
 <% if (area.polygons.length > 0) { %>
-  <h3>Stats</h3>
+  <h3 class="stat-header">AOI Size<span class='result'></span></h3>
   <div id="area-stats">
     <ul id="poly-stat-list">
-      <% if (area.get('results') != undefined) { %>
-        <% _.each(area.get('results'), function(stat, i) { %>
-          <li>
-            <%= stat.display_name %>
-            <span class="result">
-              <span class="value"><%= stat.value %></span>
-              <span class="unit"><%= stat.unit %></span>
-            </span>
-          </li>
-        <% }); %>
+      <% if (typeof results['Protected Areas'] !== 'undefined') { %>
+        <li>
+          Number of Protected Areas in AOI
+          <span class="result">
+            <span class="value"><%= results['Protected Areas'].value %></span>
+            <span class="unit"><%= results['Protected Areas'].unit %></span>
+          </span>
+        </li>
+      <% } %>
+      <% if (typeof results["% Coverage"] !== 'undefined') { %>
+        <li>
+          % of AOI covering Protected Areas
+          <span class="result">
+            <span class="value"><%= results.Coverage.value %></span>
+            <span class="unit"><%= results.Coverage.unit %></span>
+          </span>
+        </li>
+      <% } %>
+      <% if (typeof results.Coverage !== 'undefined') { %>
+        <li>
+          AOI covering Protected Areas (km2)
+          <span class="result">
+            <span class="value"><%= results.Coverage.value %></span>
+            <span class="unit"><%= results.Coverage.unit %></span>
+          </span>
+        </li>
       <% } %>
     </ul>
   </div>

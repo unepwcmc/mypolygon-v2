@@ -39,7 +39,17 @@ class Backbone.Views.AreaView extends Backbone.View
     @showAreaPolygonsView.close()
     @area.off('sync', @render)
 
+  resultsArrToObj: ->
+    if @area.get('results')?
+      keyedResults = {}
+      _.each(@area.get('results'), (result)->
+        keyedResults[result.display_name] = result
+      )
+      return keyedResults
+    else
+      return {}
+
   render: =>
-    $(@el).html(@template(area: @area))
+    $(@el).html(@template(area: @area, results: @resultsArrToObj()))
 
     return @
