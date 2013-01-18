@@ -15,37 +15,64 @@
 
 <% if (area.polygons.length > 0) { %>
   <h3 class="stat-header">AOI Size<span class='result'></span></h3>
-  <div id="area-stats">
-    <ul id="poly-stat-list">
-      <% if (typeof results['Protected Areas'] !== 'undefined') { %>
-        <li>
-          Number of Protected Areas in AOI
-          <span class="result">
-            <span class="value"><%= results['Protected Areas'].value %></span>
-            <span class="unit"><%= results['Protected Areas'].unit %></span>
-          </span>
-        </li>
-      <% } %>
-      <% if (typeof results["% Coverage"] !== 'undefined') { %>
-        <li>
-          % of AOI covering Protected Areas
-          <span class="result">
-            <span class="value"><%= results.Coverage.value %></span>
-            <span class="unit"><%= results.Coverage.unit %></span>
-          </span>
-        </li>
-      <% } %>
-      <% if (typeof results.Coverage !== 'undefined') { %>
-        <li>
-          AOI covering Protected Areas (km2)
-          <span class="result">
-            <span class="value"><%= results.Coverage.value %></span>
-            <span class="unit"><%= results.Coverage.unit %></span>
-          </span>
-        </li>
-      <% } %>
-    </ul>
-  </div>
+  <ul id="poly-stat-list">
+    <% if (typeof results['Protected Areas'] !== 'undefined') { %>
+      <li>
+        Number of Protected Areas in AOI
+        <span class="result">
+          <span class="value"><%= results['Protected Areas'].value %></span>
+          <span class="unit"><%= results['Protected Areas'].unit %></span>
+        </span>
+      </li>
+    <% } %>
+    <% if (typeof results["% Coverage"] !== 'undefined') { %>
+      <li>
+        % of AOI covering Protected Areas
+        <span class="result">
+          <span class="value"><%= results.Coverage.value %></span>
+          <span class="unit"><%= results.Coverage.unit %></span>
+        </span>
+      </li>
+    <% } %>
+    <% if (typeof results.Coverage !== 'undefined') { %>
+      <li>
+        AOI covering Protected Areas (km2)
+        <span class="result">
+          <span class="value"><%= results.Coverage.value %></span>
+          <span class="unit"><%= results.Coverage.unit %></span>
+        </span>
+      </li>
+    <% } %>
+  </ul>
+  <ul id='protected-area-details'>
+  <%
+    var pa_details;
+    if (typeof results.Details !== 'undefined') {
+      for(var i=0, il=results.Details.value_json[0].protected_areas.length;i<il; i=i+1) {
+        paDetails = results.Details.value_json[0].protected_areas[i];
+        console.log(paDetails);
+  %>
+    <li>
+      <h4><%= paDetails.name %></h4>
+      <p>IUCN Category: <%= paDetails.data_standard.IUCN_CAT %></p>
+      <p>Designation: <%= paDetails.data_standard.DESIG_ENG %></p>
+      <table>
+        <tr>
+          <th>Total Size</th>
+          <th>Size overlap with AOI</th>
+        </tr>
+        <tr>
+          <td><%= paDetails.protected_area_km2 %></td>
+          <td><%= paDetails.query_area_protected_km2 %></td>
+        </tr>
+      </table>
+    </li>
+  <%
+      }
+    }
+   %>
+  </ul>
+
 <% } %>
 <% if (area.polygons.length > 0) { %>
   <div class="footer hidden">
