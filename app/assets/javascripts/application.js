@@ -22,6 +22,11 @@
 //= require diorama/diorama_controller
 //= require_tree .
 
+var roundToDecimals = function(number, places) {
+    places = Math.pow(10, places);
+    return Math.round(number * places) / places;
+};
+
 $(document).ready(function() {
   var map, tileLayer, tileLayerUrl;
 

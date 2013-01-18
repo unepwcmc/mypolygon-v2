@@ -14,7 +14,7 @@
 </button>
 
 <% if (area.polygons.length > 0) { %>
-  <h3 class="stat-header">AOI Size<span class='result'></span></h3>
+  <h3 class="stat-header">AOI Size<span class='result'>TBA</span></h3>
   <ul id="poly-stat-list">
     <% if (typeof results['Protected Areas'] !== 'undefined') { %>
       <li>
@@ -29,7 +29,7 @@
       <li>
         % of AOI covering Protected Areas
         <span class="result">
-          <span class="value"><%= results.Coverage.value %></span>
+          <span class="value"><%= Math.round(results.Coverage.value) %></span>
           <span class="unit"><%= results.Coverage.unit %></span>
         </span>
       </li>
@@ -38,7 +38,7 @@
       <li>
         AOI covering Protected Areas (km2)
         <span class="result">
-          <span class="value"><%= results.Coverage.value %></span>
+          <span class="value"><%= Math.round(results.Coverage.value) %></span>
           <span class="unit"><%= results.Coverage.unit %></span>
         </span>
       </li>
@@ -50,7 +50,6 @@
     if (typeof results.Details !== 'undefined') {
       for(var i=0, il=results.Details.value_json[0].protected_areas.length;i<il; i=i+1) {
         paDetails = results.Details.value_json[0].protected_areas[i];
-        console.log(paDetails);
   %>
     <li>
       <h4><%= paDetails.name %></h4>
@@ -62,8 +61,8 @@
           <th>Size overlap with AOI</th>
         </tr>
         <tr>
-          <td><%= paDetails.protected_area_km2 %></td>
-          <td><%= paDetails.query_area_protected_km2 %></td>
+          <td><%= Math.round(paDetails.protected_area_km2) %><span class="unit'>km2</span></td>
+          <td><%= paDetails.query_area_protected_km2 %><span class="unit'>km2</span></td>
         </tr>
       </table>
     </li>
