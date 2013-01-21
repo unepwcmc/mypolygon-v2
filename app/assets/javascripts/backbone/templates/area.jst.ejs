@@ -14,32 +14,22 @@
 </button>
 
 <% if (area.polygons.length > 0) { %>
-  <h3 class="stat-header">AOI Size<span class='result'>TBA</span></h3>
   <ul id="poly-stat-list">
+    <% if (typeof results.Coverage !== 'undefined') { %>
+      <li>
+        Sum AOI covering Protected Areas (km2)
+        <span class="result">
+          <span class="value"><%= Math.round(results.Coverage.value) %></span>
+          <span class="unit"><%= results.Coverage.unit %></span>
+        </span>
+      </li>
+    <% } %>
     <% if (typeof results['Protected Areas'] !== 'undefined') { %>
       <li>
         Number of Protected Areas in AOI
         <span class="result">
           <span class="value"><%= results['Protected Areas'].value %></span>
           <span class="unit"><%= results['Protected Areas'].unit %></span>
-        </span>
-      </li>
-    <% } %>
-    <% if (typeof results["% Coverage"] !== 'undefined') { %>
-      <li>
-        % of AOI covering Protected Areas
-        <span class="result">
-          <span class="value"><%= Math.round(results.Coverage.value) %></span>
-          <span class="unit"><%= results.Coverage.unit %></span>
-        </span>
-      </li>
-    <% } %>
-    <% if (typeof results.Coverage !== 'undefined') { %>
-      <li>
-        AOI covering Protected Areas (km2)
-        <span class="result">
-          <span class="value"><%= Math.round(results.Coverage.value) %></span>
-          <span class="unit"><%= results.Coverage.unit %></span>
         </span>
       </li>
     <% } %>
@@ -54,29 +44,33 @@
   %>
     <li>
       <h3>AOI #<%= i %></h3>
-      <ul class='protected-area-details'>
+      <div class="aoi-details">
+        <p>AOI size: <%= roundToDecimals(polygonResults.query_area_km2, 1) %>km<sup>2</sup></p>
+        <p>AOI PA coverage: <%= roundToDecimals(polygonResults.sum_pa_cover_km2, 1) %>km<sup>2</sup></p>
+        <ul class='protected-area-details'>
   <%
         for (j = 0, jl = polygonResults.protected_areas.length; j < jl; j++) {
           paDetails = polygonResults.protected_areas[j];
           console.log(paDetails);
   %>
-      <li>
-        <h4><a href="http://protectedplanet.net/sites/<%= paDetails.wdpaid %>" target="_blank"><%= paDetails.name %></a></h4>
-        <p>IUCN Category: <%= paDetails.data_standard.IUCN_CAT %></p>
-        <p>Designation: <%= paDetails.data_standard.DESIG_ENG %></p>
-        <table>
-          <tr>
-            <th>Total Size</th>
-            <th>Size overlap with AOI</th>
-          </tr>
-          <tr>
-            <td><%= roundToDecimals(paDetails.protected_area_km2, 1) %><span class="unit">km2</span></td>
-            <td><%= roundToDecimals(paDetails.query_area_protected_km2, 1) %><span class="unit">km2</span></td>
-          </tr>
-        </table>
-      </li>
+          <li>
+            <h4><a href="http://protectedplanet.net/sites/<%= paDetails.wdpaid %>" target="_blank"><%= paDetails.name %></a></h4>
+            <p>IUCN Category: <%= paDetails.data_standard.IUCN_CAT %></p>
+            <p>Designation: <%= paDetails.data_standard.DESIG_ENG %></p>
+            <table>
+              <tr>
+                <th>Total Size</th>
+                <th>Size overlap with AOI</th>
+              </tr>
+              <tr>
+                <td><%= roundToDecimals(paDetails.protected_area_km2, 1) %><span class="unit">km2</span></td>
+                <td><%= roundToDecimals(paDetails.query_area_protected_km2, 1) %><span class="unit">km2</span></td>
+              </tr>
+            </table>
+          </li>
   <%    } %>
-      </ul>
+        </ul>
+      </div>
     </li>
   <%
       }

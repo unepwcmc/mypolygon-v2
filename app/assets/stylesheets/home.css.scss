@@ -133,16 +133,6 @@ body {
   }
 }
 
-.area-show {
-  h3.stat-header {
-    color: black;
-    font-weight: normal;
-    span.result {
-      font-weight:bold;
-      float: right;
-    }
-  }
-}
 #add-polygon,
 #add-circle  {
   margin: 10px auto;
@@ -170,9 +160,6 @@ body {
       }
     }
   }
-  li:nth-child(odd) {
-    background-color: #EBEBEB;
-  }
 }
 #polygon-list {
   position: absolute;
@@ -180,11 +167,26 @@ body {
   top: 200px;
   overflow: scroll;
   border: 1px solid #CCC;
-  width: 270px;
+  padding: 0;
+  width: 310px;
+  list-style-type: none;
+
+  > li {
+    padding: 5px
+  }
+  > li:nth-child(odd) {
+      background-color: #EEEEEE;
+  }
+  h3 {
+    margin: 0;
+  }
+  p {
+    margin:0;
+  }
 }
 .protected-area-details {
   list-style-type: none;
-  padding-left: 0;
+  padding-left: 5px;
 
   h4 {
     a {
