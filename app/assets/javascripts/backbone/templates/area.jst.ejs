@@ -44,32 +44,45 @@
       </li>
     <% } %>
   </ul>
-  <ul id='protected-area-details'>
+  <ul id='polygon-list'>
   <%
-    var pa_details;
+    var paDetails, polygonResults, i, j, il, jl;
     if (typeof results.Details !== 'undefined') {
-      for(var i=0, il=results.Details.value_json[0].protected_areas.length;i<il; i=i+1) {
-        paDetails = results.Details.value_json[0].protected_areas[i];
+
+      for (i = 0, il = results.Details.value_json.length; i < il; i++) {
+        polygonResults = results.Details.value_json[i];
+        console.log('AOI' + i);
   %>
     <li>
-      <h4><%= paDetails.name %></h4>
-      <p>IUCN Category: <%= paDetails.data_standard.IUCN_CAT %></p>
-      <p>Designation: <%= paDetails.data_standard.DESIG_ENG %></p>
-      <table>
-        <tr>
-          <th>Total Size</th>
-          <th>Size overlap with AOI</th>
-        </tr>
-        <tr>
-          <td><%= Math.round(paDetails.protected_area_km2) %><span class="unit'>km2</span></td>
-          <td><%= paDetails.query_area_protected_km2 %><span class="unit'>km2</span></td>
-        </tr>
-      </table>
+      <h3>AOI #<%= i %></h3>
+      <ul class='protected-area-details'>
+  <%
+        for (j = 0, jl = polygonResults.protected_areas.length; j < jl; j++) {
+          paDetails = polygonResults.protected_areas[j];
+          console.log(paDetails);
+  %>
+      <li>
+        <h4><a href="http://protectedplanet.net/sites/<%= paDetails.wdpaid %>" target="_blank"><%= paDetails.name %></a></h4>
+        <p>IUCN Category: <%= paDetails.data_standard.IUCN_CAT %></p>
+        <p>Designation: <%= paDetails.data_standard.DESIG_ENG %></p>
+        <table>
+          <tr>
+            <th>Total Size</th>
+            <th>Size overlap with AOI</th>
+          </tr>
+          <tr>
+            <td><%= roundToDecimals(paDetails.protected_area_km2, 1) %><span class="unit">km2</span></td>
+            <td><%= roundToDecimals(paDetails.query_area_protected_km2, 1) %><span class="unit">km2</span></td>
+          </tr>
+        </table>
+      </li>
+  <%    } %>
+      </ul>
     </li>
   <%
       }
     }
-   %>
+  %>
   </ul>
 
 <% } %>

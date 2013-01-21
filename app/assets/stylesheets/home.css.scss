@@ -163,12 +163,15 @@ body {
     background-color: #EBEBEB;
   }
 }
-#protected-area-details {
+.protected-area-details {
   list-style-type: none;
   padding-left: 0;
 
   h4 {
-    color: #005A79;
+    a {
+      color: #005A79;
+      text-decoration: none;
+    }
     font-size: 18px;
     margin-bottom: 5px;
   }
