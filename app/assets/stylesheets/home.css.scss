@@ -120,6 +120,17 @@ body {
   background: white;
   border: 1px solid #CCC;
   padding: 7px;
+  position: absolute;
+  right: 6px;
+  bottom: 7px;
+  top: 82px;
+  z-index: -1;
+  width: 311px;
+
+  .footer {
+    bottom: 10px;
+    position: absolute;
+  }
 }
 
 .area-show {
@@ -162,6 +173,14 @@ body {
   li:nth-child(odd) {
     background-color: #EBEBEB;
   }
+}
+#polygon-list {
+  position: absolute;
+  bottom: 50px;
+  top: 200px;
+  overflow: scroll;
+  border: 1px solid #CCC;
+  width: 270px;
 }
 .protected-area-details {
   list-style-type: none;
