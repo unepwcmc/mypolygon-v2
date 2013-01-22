@@ -50,7 +50,7 @@ body {
   width: 326px;
   float:right;
   padding: 7px;
-  color: #666;
+  color: #333;
   font: normal 17px Arial;
   line-height: 23px;
 }
@@ -140,12 +140,12 @@ body {
 }
 
 #poly-stat-list {
-  margin: 5px 0;
+  margin: 10px 0 5px;
   padding-left: 0;
 
   li {
     overflow:hidden;
-    font-size: 14px;
+    font-size: 13px;
     padding: 3px 7px;
 
     .result {
@@ -164,12 +164,12 @@ body {
 #polygon-list {
   position: absolute;
   bottom: 50px;
-  top: 200px;
+  top: 150px;
   overflow: scroll;
-  border: 1px solid #CCC;
   padding: 0;
-  width: 310px;
+  width: 312px;
   list-style-type: none;
+  font-size: 14px;
 
   > li {
     padding: 5px
@@ -179,6 +179,7 @@ body {
   }
   h3 {
     margin: 0;
+    font-size: 14px;
     background: image-url("arrow-down.png") 283px 4px no-repeat;
   }
   h3.hide {
@@ -195,18 +196,22 @@ body {
   list-style-type: none;
   padding-left: 5px;
   background-color: #F6F6F6;
+  font-size: 13px;
 
   h4 {
-    a {
-      color: #005A79;
-      text-decoration: none;
-    }
-    font-size: 18px;
-    margin-bottom: 5px;
+    font-size: 14px;
+    padding: 11px 0 0px;
+    margin: 0;
+  }
+  a {
+    color: #02537a;
+    font-size: 13px;
+    font-weigh: bold;
+    text-decoration: none;
   }
   p {
     margin:  3px 0;
-    font-size: 14px;
+    font-size: 13px;
   }
   table {
     border-collapse: collapse;
@@ -216,18 +221,22 @@ body {
     th {
       background-color: #DDDDDD;
       padding: 5px 3px;
-      border: 1px solid #FFF;
+      border-right: 1px solid #F6F6F6;
       font-weight: normal;
       font-size: 14px;
     }
     td {
       border: 1px solid #DDDDDD;
+      border-right: 0;
       font-weight: bold;
       font-size: 24px;
       span {
         font-weight: normal;
         font-size: 16px;
       }
+    }
+    td:first-child {
+      border-left: 0;
     }
   }
 }
