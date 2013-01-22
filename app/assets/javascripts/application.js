@@ -33,14 +33,11 @@ $(document).ready(function() {
   // Create a leaflet map to use
   map = L.map('map',{
     center: [54, 24.5],
-    minZoom: 7,
     zoom: 9
   });
 
   tileLayerUrl = 'http://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png';
-  tileLayer = new L.TileLayer(tileLayerUrl, {
-    maxZoom: 18
-  }).addTo(map);
+  tileLayer = new L.TileLayer(tileLayerUrl).addTo(map);
 
   // Start a new pica application, with the given options
   window.pica = new Pica.Application({
