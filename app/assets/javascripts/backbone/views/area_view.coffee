@@ -7,6 +7,7 @@ class Backbone.Views.AreaView extends Backbone.View
   events:
     'click #add-polygon': 'toggleDrawing'
     'click #add-circle': 'toggleDrawing'
+    'click .aoi-details-header': 'togglePolygonDetails'
 
   initialize: (options) ->
     @area = options.area
@@ -28,6 +29,11 @@ class Backbone.Views.AreaView extends Backbone.View
         error: (xhr, textStatus, errorThrown) =>
           alert("Can't save polygon: #{errorThrown}")
       )
+
+  togglePolygonDetails: (event)->
+    $el = $(event.target)
+    $el.toggleClass('hide')
+    $el.next('.aoi-details').slideToggle()
 
   removeNewPolygonView: ->
     if @polygonView?

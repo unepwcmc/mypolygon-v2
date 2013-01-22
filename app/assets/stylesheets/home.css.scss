@@ -179,14 +179,22 @@ body {
   }
   h3 {
     margin: 0;
+    background: image-url("arrow-down.png") 283px 4px no-repeat;
+  }
+  h3.hide {
+    background: image-url("arrow-left.png") 283px 4px no-repeat;
   }
   p {
     margin:0;
+  }
+  .aoi-details.hide {
+    display:none;
   }
 }
 .protected-area-details {
   list-style-type: none;
   padding-left: 5px;
+  background-color: #F6F6F6;
 
   h4 {
     a {
