@@ -14,20 +14,7 @@ body {
   padding:  7px 10px;
   border-bottom: 1px solid #444;
 
-  background-image: linear-gradient(bottom, rgb(0,74,114) 12%, rgb(0,83,124) 67%, rgb(0,91,136) 100%);
-  background-image: -o-linear-gradient(bottom, rgb(0,74,114) 12%, rgb(0,83,124) 67%, rgb(0,91,136) 100%);
-  background-image: -moz-linear-gradient(bottom, rgb(0,74,114) 12%, rgb(0,83,124) 67%, rgb(0,91,136) 100%);
-  background-image: -webkit-linear-gradient(bottom, rgb(0,74,114) 12%, rgb(0,83,124) 67%, rgb(0,91,136) 100%);
-  background-image: -ms-linear-gradient(bottom, rgb(0,74,114) 12%, rgb(0,83,124) 67%, rgb(0,91,136) 100%);
-
-  background-image: -webkit-gradient(
-    linear,
-    left bottom,
-    left top,
-    color-stop(0.12, rgb(0,74,114)),
-    color-stop(0.67, rgb(0,83,124)),
-    color-stop(1, rgb(0,91,136))
-  );
+  background-image: url("bar-bg.png");
 
   h1 {
     font: normal 20px "Lucida Grande", Arial;
