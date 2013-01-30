@@ -2,6 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+
+
+
 body {
   background-color: #EEEEEE;
   font: 12px Arial, Helvetica, sans-serif;
@@ -11,23 +15,34 @@ body {
 }
 
 #header-strip {
-  padding:  7px 10px;
-  border-bottom: 1px solid #444;
-
+  padding: 7px 10px;
+height: 100px;
+position: relative;
   background-image: url("bar-bg.png");
+background-repeat: repeat-x;
 
   h1 {
-    font: normal 20px "Lucida Grande", Arial;
-    color: white;
-    text-shadow: 0 -1px #00324C;
+	position:absolute;
+	top: 55px;
+    font-family: "Oxygen", Arial, sans-serif;
+font-size: 30px;
+font-weight: 400;
+    color: #005c87;
+	display: inline;
+    text-shadow: 0 1px #ffffff;
     text-decoration: none;
-    margin: 0;
-  }
+    margin: 20px;
+  
+	span{
+		font-weight: 700;
+		}
+
+	}
 }
 
 #map {
   position: absolute;
-  top: 38px;
+  top: 130px;
   bottom: 0;
   left: 0;
   right: 340px;
@@ -63,6 +78,10 @@ body {
   background-image: -moz-linear-gradient(bottom, rgb(0,91,136) 12%, rgb(0,83,124) 67%, rgb(0,74,114) 100%);
   background-image: -webkit-linear-gradient(bottom, rgb(0,91,136) 12%, rgb(0,83,124) 67%, rgb(0,74,114) 100%);
   background-image: -ms-linear-gradient(bottom, rgb(0,91,136) 12%, rgb(0,83,124) 67%, rgb(0,74,114) 100%);
+}
+
+.btn.btn-primary{
+
 }
 
 .btn.btn-large {
@@ -110,7 +129,7 @@ body {
   position: absolute;
   right: 6px;
   bottom: 7px;
-  top: 82px;
+  top: 156px;
   z-index: -1;
   width: 311px;
 
@@ -122,18 +141,25 @@ body {
 
 #add-polygon,
 #add-circle  {
-  margin: 10px auto;
+  margin: 10px 3px 10px 3px;
+	float: left;
+	font-weight: normal;
+	font-size: 12px;
   display: block;
 }
 
 #poly-stat-list {
-  margin: 10px 0 5px;
+  margin: 20px 0 5px 0;
   padding-left: 0;
+	border-top: 2px solid #005c87;
+	width: 100%;
+	float: left;
 
   li {
     overflow:hidden;
     font-size: 13px;
-    padding: 3px 7px;
+    padding: 3px 0px;
+	margin: 0;
 
     .result {
       float:right;
@@ -147,76 +173,100 @@ body {
       }
     }
   }
+	li:first-child{
+		border-bottom: 1px dotted #ccc;
+		}
 }
 #polygon-list {
   position: absolute;
   bottom: 50px;
-  top: 150px;
+  top: 120px;
   overflow: scroll;
   padding: 0;
   width: 312px;
   list-style-type: none;
-  font-size: 14px;
+  font-size: 12px;
+	border-top: 2px solid #005c87;
+
 
   > li {
-    padding: 5px
+    padding: 5px ;
   }
   > li:nth-child(odd) {
       background-color: #EEEEEE;
   }
   h3 {
     margin: 0;
-    font-size: 14px;
-    background: url("arrow-down.png") 283px 4px no-repeat;
+    font-size: 12px;
+    background: url("arrow-down.png") 253px 4px no-repeat;
   }
   h3.hide {
-    background: url("arrow-left.png") 283px 4px no-repeat;
+    background: url("arrow-left.png") 253px 4px no-repeat;
   }
+
   p {
-    margin:0;
+	line-height: 1.2em;
+	margin: 0;
   }
+
   .aoi-details.hide {
     display:none;
-  }
+  }	
 }
+
 .protected-area-details {
   list-style-type: none;
-  padding-left: 5px;
   background-color: #F6F6F6;
-  font-size: 13px;
+  font-size: 10px;
+	padding: 0;
+	margin: 4px 0 0 0;
+	color: #333;
+	
+	li{
+	  border: 1px solid #ccc;
+		padding: 0 0 5px;
+		margin: 0;
+	}
 
   h4 {
-    font-size: 14px;
-    padding: 11px 0 0px;
+    font-size: 10px;
+    padding: 0 0 0 2px;
     margin: 0;
+	background: #ccc;
   }
   a {
     color: #02537a;
-    font-size: 13px;
-    font-weigh: bold;
+    font-size: 10px;
+	padding: 0 14px 0 5px;
+    font-weight: bold;
     text-decoration: none;
+	background: url("external.png") right no-repeat;
   }
+
   p {
-    margin:  3px 0;
-    font-size: 13px;
+    margin:  0;
+	padding: 0 0 0 5px;
+    font-size: 10px;
   }
+
   table {
+	margin: 10px 0 10px 5px;
     border-collapse: collapse;
     td,th {
-      padding: 3px;
+      padding: 5px;
     }
     th {
       background-color: #DDDDDD;
       padding: 5px 3px;
       border-right: 1px solid #F6F6F6;
       font-weight: normal;
-      font-size: 14px;
+      font-size: 12px;
     }
     td {
       border: 1px solid #DDDDDD;
       border-right: 0;
       font-weight: bold;
-      font-size: 24px;
+      font-size: 18px;
       span {
         font-weight: normal;
         font-size: 16px;
