@@ -28,16 +28,22 @@ var roundToDecimals = function(number, places) {
 };
 
 $(document).ready(function() {
-  var map, tileLayer, tileLayerUrl;
+  var baseSatellite = L.tileLayer('http://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {maxZoom: 18});
 
   // Create a leaflet map to use
-  map = L.map('map',{
+  var map = L.map('map', {
     center: [54, 24.5],
-    zoom: 4
+    zoom: 4,
+    layers: [baseSatellite]
   });
 
-  tileLayerUrl = 'http://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png';
-  tileLayer = new L.TileLayer(tileLayerUrl).addTo(map);
+  // Layers
+  var overlayMaps = {
+    'Protected Areas': L.tileLayer('http://184.73.201.235/blue/{z}/{x}/{y}').addTo(map),
+    'Boundaries and Places': L.tileLayer('http://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}').addTo(map)
+  };
+
+  L.control.layers({}, overlayMaps).addTo(map);
 
   // Start a new pica application, with the given options
   window.pica = new Pica.Application({
