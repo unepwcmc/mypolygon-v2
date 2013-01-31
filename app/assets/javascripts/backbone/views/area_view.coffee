@@ -37,7 +37,7 @@ class Backbone.Views.AreaView extends Backbone.View
 
   onFileUploadSuccess: =>
     @fileView = null
-    @area.sync()
+    @area.fetch()
 
   togglePolygonDetails: (event)->
     $el = $(event.target)
