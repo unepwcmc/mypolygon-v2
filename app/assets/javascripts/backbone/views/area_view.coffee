@@ -56,6 +56,7 @@ class Backbone.Views.AreaView extends Backbone.View
       return {}
 
   render: =>
+    debugger
     $(@el).html(@template(area: @area, results: @resultsArrToObj()))
 
     return @

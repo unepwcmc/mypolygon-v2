@@ -82,6 +82,6 @@
 <% } %>
 <% if (area.polygons.length > 0) { %>
   <div class="footer hidden">
-    <button type="button" class="btn btn-primary" id="export">Export your report</button>
+    <a href="http://magpie.unepwcmc-005.vm.brightbox.net/areas_of_interest/<%= this.area.get('id') %>.csv" class="btn btn-primary" id="export">Export your report</a>
   </div>
 <% } %>
