@@ -33,7 +33,7 @@ $(document).ready(function() {
   // Create a leaflet map to use
   map = L.map('map',{
     center: [54, 24.5],
-    zoom: 9
+    zoom: 4
   });
 
   tileLayerUrl = 'http://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png';
