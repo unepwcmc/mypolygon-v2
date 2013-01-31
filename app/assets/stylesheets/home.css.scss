@@ -139,18 +139,34 @@ z-index: 10;
   margin: 0;
   padding-left: 0;
   height: 37px;
-}
 
-.sidebar-tabs li{
-  list-style-type: none;
-  float:left;
-  padding: 7px;
-  font-weight: bold;
-  margin-top: 1px;
-}
-.sidebar-tabs li a{
-  color: #666;
-  text-decoration: none;
+  li {
+    list-style-type: none;
+    float:left;
+    padding: 7px;
+    font-weight: bold;
+    margin-top: 1px;
+
+    &.active {
+      background: white;
+      border: 1px solid #CCC;
+      border-bottom: 0px;
+      margin-top: 0;
+      a {
+        color: #333;
+      }
+    }
+  }
+
+  a {
+    color: #666;
+    text-decoration: none;
+  }
+
+  input {
+    border: 0;
+    max-width: 90px;
+  }
 }
 
 .sidebar-tabs li.active{

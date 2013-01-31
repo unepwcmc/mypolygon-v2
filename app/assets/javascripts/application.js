@@ -39,7 +39,7 @@ $(document).ready(function() {
 
   // Layers
   var overlayMaps = {
-    'Protected Areas': L.tileLayer('http://184.73.201.235/blue/{z}/{x}/{y}').addTo(map),
+    'Protected Areas': L.tileLayer('http://184.73.201.235/blue/{z}/{x}/{y}'),
     'Boundaries and Places': L.tileLayer('http://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}').addTo(map)
   };
 
@@ -51,7 +51,7 @@ $(document).ready(function() {
     projectId: 5,
     map: map
   });
-  
+
   var tileLayerView = pica.showTileLayers();
 
   var mainController = new Backbone.Controllers.MainController();
