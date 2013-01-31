@@ -50,6 +50,21 @@ $(document).ready(function() {
 
   var mainController = new Backbone.Controllers.MainController();
   $('#sidebar').html(mainController.$el);
+  
+  $('#search form').submit(function(e) {
+    e.preventDefault();
+
+    $.getJSON('http://nominatim.openstreetmap.org/search', {format: 'json', q: $('#search form #query').val()}, function(data) {
+      if(data.length > 0) {
+        map.fitBounds([
+          [parseFloat(data[0].boundingbox[0]), parseFloat(data[0].boundingbox[2])],
+          [parseFloat(data[0].boundingbox[1]), parseFloat(data[0].boundingbox[3])]
+        ]);
+      }
+    });
+
+    return false;
+  });
 });
 
 /*
