@@ -20,7 +20,7 @@
   <ul id="poly-stat-list">
     <% if (typeof results.Coverage !== 'undefined') { %>
       <li>
-        Sum AOI covering Protected Areas (km2)
+        Sum AOI covering PA's (km2)
         <span class="result">
           <span class="value"><%= Math.round(results.Coverage.value) %></span>
           <span class="unit"><%= results.Coverage.unit %></span>
@@ -46,8 +46,8 @@
         polygonResults = results.Details.value_json[i];
   %>
     <li>
-      <h3 class="aoi-details-header <%= il === 1 ? '' : 'hide' %>">AOI #<%= i %></h3>
-      <div class="aoi-details  <%= il === 1 ? '' : 'hide' %>">
+      <h3 class="aoi-details-header hide">AOI #<%= i %></h3>
+      <div class="aoi-details" style="display: none">
         <p>AOI size: <%= roundToDecimals(polygonResults.query_area_km2, 1) %>km<sup>2</sup></p>
         <p>AOI PA coverage: <%= roundToDecimals(polygonResults.sum_pa_cover_km2, 1) %>km<sup>2</sup></p>
         <ul class='protected-area-details'>
@@ -85,6 +85,6 @@
 <% } %>
 <% if (area.polygons.length > 0) { %>
   <div class="footer hidden">
-    <button type="button" class="btn btn-primary" id="export">Export your report</button>
+    <a href="http://magpie.unepwcmc-005.vm.brightbox.net/areas_of_interest/<%= this.area.get('id') %>.csv" class="btn btn-primary" id="export">Export your report</a>
   </div>
 <% } %>
