@@ -8,6 +8,7 @@ class Backbone.Views.AreaView extends Backbone.View
     'click #add-polygon': 'toggleDrawing'
     'click #add-circle': 'toggleDrawing'
     'click .aoi-details-header': 'togglePolygonDetails'
+    'click #upload-file': 'startUploadFile'
 
   initialize: (options) ->
     @area = options.area
@@ -29,6 +30,14 @@ class Backbone.Views.AreaView extends Backbone.View
         error: (xhr, textStatus, errorThrown) =>
           alert("Can't save polygon: #{errorThrown}")
       )
+
+  startUploadFile: ->
+    @fileView = @area.newUploadFileView(success:@onFileUploadSuccess)
+    @$el.append(@fileView.el)
+
+  onFileUploadSuccess: =>
+    @fileView = null
+    @area.sync()
 
   togglePolygonDetails: (event)->
     $el = $(event.target)
@@ -55,7 +64,9 @@ class Backbone.Views.AreaView extends Backbone.View
     else
       return {}
 
+
   render: =>
     $(@el).html(@template(area: @area, results: @resultsArrToObj()))
+    @$el.append(@fileView.el) if @fileView?
 
     return @
