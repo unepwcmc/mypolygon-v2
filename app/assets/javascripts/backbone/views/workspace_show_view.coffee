@@ -14,6 +14,9 @@ class Backbone.Views.WorkspaceShowView extends Backbone.View
   initialize: () ->
     @currentTab = new Backbone.Diorama.ManagedRegion()
 
+    # Default name for the first area/tab
+    pica.currentWorkspace.areas[0].setName('Area #1')
+
   changeTab: (e) ->
     $el = $(e.target)
 
