@@ -60,7 +60,10 @@ class Backbone.Views.WorkspaceShowView extends Backbone.View
 
     name = currentAreaInput.val()
     pica.currentWorkspace.currentArea.setName(name)
-    currentAreaLink.html(name)
+    if name.length > 7
+      currentAreaLink.html("#{ name.substr(0,6) }...")
+    else
+      currentAreaLink.html(name)
 
   returnKeyRenameArea: (e) =>
     if e.keyCode == 13  # Return key
