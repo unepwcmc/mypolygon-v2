@@ -37,7 +37,12 @@ class Backbone.Views.AreaView extends Backbone.View
 
   onFileUploadSuccess: =>
     @fileView = null
-    @area.fetch()
+    @area.fetch(
+      success: (data) ->
+        console.log('fetched after file upload')
+      error: (a,b,c) ->
+        console.log('failed to fetch after file upload')
+    )
 
   togglePolygonDetails: (event)->
     $el = $(event.target)
