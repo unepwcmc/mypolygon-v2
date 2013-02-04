@@ -1,7 +1,8 @@
 <ul class="sidebar-tabs">
   <% for (var i=0; i < areas.length; i++) { %>
     <li <% if (areas[i] == currentArea) { %> class="active" <% } %>>
-      <a data-area-id="<%= i %>" class="tab">Area #<%= i+1 %></a>
+      <a data-area-id="<%= i %>" class="tab"><%= areas[i].get('name') %></a>
+      <input type="text" value="Area #<%= i+1 %>" style="display: none" />
     </li>
   <% } %>
 

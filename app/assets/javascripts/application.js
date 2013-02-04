@@ -28,22 +28,16 @@ var roundToDecimals = function(number, places) {
 };
 
 $(document).ready(function() {
-  var baseSatellite = L.tileLayer('http://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {maxZoom: 18});
+  var map, tileLayer, tileLayerUrl;
 
   // Create a leaflet map to use
-  var map = L.map('map', {
+  map = L.map('map',{
     center: [54, 24.5],
-    zoom: 4,
-    layers: [baseSatellite]
+    zoom: 4
   });
 
-  // Layers
-  var overlayMaps = {
-    'Protected Areas': L.tileLayer('http://184.73.201.235/blue/{z}/{x}/{y}').addTo(map),
-    'Boundaries and Places': L.tileLayer('http://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}').addTo(map)
-  };
-
-  L.control.layers({}, overlayMaps).addTo(map);
+  tileLayerUrl = 'http://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png';
+  tileLayer = new L.TileLayer(tileLayerUrl).addTo(map);
 
   // Start a new pica application, with the given options
   window.pica = new Pica.Application({
@@ -51,12 +45,12 @@ $(document).ready(function() {
     projectId: 5,
     map: map
   });
-  
+
   var tileLayerView = pica.showTileLayers();
 
   var mainController = new Backbone.Controllers.MainController();
   $('#sidebar').html(mainController.$el);
-  
+
   $('#search form').submit(function(e) {
     e.preventDefault();
 

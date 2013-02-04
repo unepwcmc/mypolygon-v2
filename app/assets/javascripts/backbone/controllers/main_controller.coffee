@@ -17,7 +17,7 @@ class Backbone.Controllers.MainController extends Backbone.Diorama.Controller
       {event: 'showWorkspace', publisher: uploadOrDrawView, newState: @showWorkspace},
       {event: 'startUpload', publisher: uploadOrDrawView, newState: @uploadFile}
     )
-  
+
   showWorkspace: () =>
     workspaceShowView = new Backbone.Views.WorkspaceShowView()
     @mainRegion.showView(workspaceShowView)
@@ -29,4 +29,3 @@ class Backbone.Controllers.MainController extends Backbone.Diorama.Controller
     @changeStateOn(
       {event: '', publisher: uploadFileView, newState: @uploadOrDraw}
     )
-  
