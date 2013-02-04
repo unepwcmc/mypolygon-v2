@@ -28,7 +28,7 @@ var roundToDecimals = function(number, places) {
 };
 
 $(document).ready(function() {
-  var map, tileLayer, tileLayerUrl;
+  var map, tileLayer, tileLayerUrl, boundariesLayer, boundariesLayerUrl;
 
   // Create a leaflet map to use
   map = L.map('map',{
@@ -38,6 +38,14 @@ $(document).ready(function() {
 
   tileLayerUrl = 'http://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png';
   tileLayer = new L.TileLayer(tileLayerUrl).addTo(map);
+
+  // Layers
+  var overlayMaps = {
+    'Protected Areas': L.tileLayer('http://184.73.201.235/blue/{z}/{x}/{y}'),
+    'Boundaries and Places': L.tileLayer('http://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}').addTo(map)
+  };
+
+  L.control.layers({}, overlayMaps).addTo(map);
 
   // Start a new pica application, with the given options
   window.pica = new Pica.Application({
