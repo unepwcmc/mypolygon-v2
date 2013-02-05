@@ -22,6 +22,9 @@
 //= require diorama/diorama_controller
 //= require_tree .
 
+// console is undefined error for internet explorer
+if (!window.console) console = {log: function() {}};
+
 var roundToDecimals = function(number, places) {
     places = Math.pow(10, places);
     return Math.round(number * places) / places;
