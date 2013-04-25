@@ -10,7 +10,7 @@ class Backbone.Views.UploadFileView extends Backbone.View
     @render()
 
   render: =>
-    @$el.html(@template())
+    @$el.html(@template(magpieUrl: pica.config.magpieUrl))
 
   createWorkspace: ->
     file = $("[name=file]")[0]

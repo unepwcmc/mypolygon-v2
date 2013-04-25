@@ -37,12 +37,21 @@ class Backbone.Views.AreaView extends Backbone.View
 
   onFileUploadSuccess: =>
     @fileView = null
+    @showLoadingSpinner()
     @area.fetch(
       success: (data) ->
+        @hideLoadingSpinner()
         console.log('fetched after file upload')
       error: (a,b,c) ->
+        @hideLoadingSpinner()
         console.log('failed to fetch after file upload')
     )
+
+  showLoadingSpinner: ->
+    $('.spinner').show()
+
+  hideLoadingSpinner: ->
+    $('.spinner').hide()
 
   togglePolygonDetails: (event)->
     $el = $(event.target)
@@ -68,7 +77,6 @@ class Backbone.Views.AreaView extends Backbone.View
       return keyedResults
     else
       return {}
-
 
   render: =>
     $(@el).html(@template(area: @area, results: @resultsArrToObj()))

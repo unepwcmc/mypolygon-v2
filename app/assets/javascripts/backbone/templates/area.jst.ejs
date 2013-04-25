@@ -1,20 +1,14 @@
 <button class="btn btn-primary" id="add-polygon" data-type="Polygon">
-<% if (area.polygons.length > 0) { %>
-  Draw another polygon
-<% } else { %>
-  Draw a polygon
-<% } %>
+  Add a polygon
 </button>
 <button class="btn btn-primary" id="add-circle" data-type="Circle">
-<% if (area.polygons.length > 0) { %>
-  Draw another point
-<% } else { %>
-  Draw a point
-<% } %>
+  Add a point
 </button>
 <button class="btn btn-primary" id="upload-file">
   Upload a file
 </button>
+
+<img class='spinner' src='/assets/download.gif'/>
 
 <% if (area.polygons.length > 0) { %>
   <ul id="poly-stat-list">
@@ -27,12 +21,16 @@
         </span>
       </li>
     <% } %>
-    <% if (typeof results['Protected Areas'] !== 'undefined') { %>
+    <% if (typeof results['Protected Area Count'] !== 'undefined') { %>
       <li>
         Number of Protected Areas in AOI
         <span class="result">
-          <span class="value"><%= results['Protected Areas'].value %></span>
-          <span class="unit"><%= results['Protected Areas'].unit %></span>
+          <% if (results['Protected Area Count'].error_message) { %>
+            <span class="error"><%= results['Protected Area Count'].error_message %></span>
+          <% } else { %>
+            <span class="value"><%= results['Protected Area Count'].value %></span>
+            <span class="unit"><%= results['Protected Area Count'].unit %></span>
+          <% } %>
         </span>
       </li>
     <% } %>

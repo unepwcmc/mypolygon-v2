@@ -7,8 +7,9 @@ class Backbone.Controllers.MainController extends Backbone.Diorama.Controller
     @$el = @mainRegion.$el
 
     # Default state
-    @uploadOrDraw()
-  
+    window.pica.newWorkspace()
+    @showWorkspace()
+
   uploadOrDraw: =>
     uploadOrDrawView = new Backbone.Views.UploadOrDrawView()
     @mainRegion.showView(uploadOrDrawView)
