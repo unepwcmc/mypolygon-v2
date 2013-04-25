@@ -16,8 +16,12 @@
       <li>
         Sum AOI covering PA's (km2)
         <span class="result">
-          <span class="value"><%= Math.round(results.Coverage.value) %></span>
-          <span class="unit"><%= results.Coverage.unit %></span>
+          <% if (results.Coverage.error_message) { %>
+            <span class="error"><%= results.Coverage.error_message %></span>
+          <% } else { %>
+            <span class="value"><%= Math.round(results.Coverage.value) %></span>
+            <span class="unit"><%= results.Coverage.unit %></span>
+          <% } %>
         </span>
       </li>
     <% } %>
@@ -39,9 +43,17 @@
   <%
     var paDetails, polygonResults, i, j, il, jl;
     if (typeof results.Details !== 'undefined') {
-
-      for (i = 0, il = results.Details.value_json.length; i < il; i++) {
-        polygonResults = results.Details.value_json[i];
+  %>
+    <li>
+  <% 
+      if (results.Details.error_message) {
+  %>
+      <h3>Sorry, there was an error:</h3>
+      <p>Unable to gather protected area stats:</p>
+      <p><%= results.Details.error_message %></p>
+  <%  } else {
+        for (i = 0, il = results.Details.value.length; i < il; i++) {
+          polygonResults = results.Details.value[i];
   %>
     <li>
       <h3 class="aoi-details-header hide">AOI #<%= i %></h3>
@@ -77,6 +89,7 @@
   <%
       }
     }
+  }
   %>
   </ul>
 

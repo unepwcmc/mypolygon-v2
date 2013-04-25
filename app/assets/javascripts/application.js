@@ -53,7 +53,7 @@ $(document).ready(function() {
   // Start a new pica application, with the given options
   window.pica = new Pica.Application({
     magpieUrl: "http://magpie.unepwcmc-005.vm.brightbox.net",
-    projectId: 5,
+    projectId: 8,
     map: map
   });
 
