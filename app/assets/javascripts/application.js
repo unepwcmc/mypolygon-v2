@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jQuery.XDomainRequest.js
+//= require jQuery.XDomainRequest
 //= require leaflet
 //= require leaflet.draw
 //= require pica
