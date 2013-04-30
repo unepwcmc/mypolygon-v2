@@ -58,7 +58,7 @@ $(document).ready(function() {
     map: map
   });
 
-  var tileLayerView = pica.showTileLayers();
+  //var tileLayerView = pica.showTileLayers();
 
   var mainController = new Backbone.Controllers.MainController();
   $('#sidebar').html(mainController.$el);
