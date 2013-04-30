@@ -21,63 +21,19 @@
 //= require backbone-min
 //= require diorama/diorama_managed_region
 //= require diorama/diorama_controller
+//= require main
 //= require_tree .
+
 
 // console is undefined error for internet explorer
 if (!window.console) console = {log: function() {}};
 
+// TODO: these should not be a global, but effectively it is!
 var roundToDecimals = function(number, places) {
     places = Math.pow(10, places);
     return Math.round(number * places) / places;
 };
 
-$(document).ready(function() {
-  var map, tileLayer, tileLayerUrl, boundariesLayer, boundariesLayerUrl;
-
-  // Create a leaflet map to use
-  map = L.map('map',{
-    center: [54, 24.5],
-    zoom: 4
-  });
-
-  tileLayerUrl = 'http://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png';
-  tileLayer = new L.TileLayer(tileLayerUrl).addTo(map);
-
-  // Layers
-  var overlayMaps = {
-    'Protected Areas': L.tileLayer('http://184.73.201.235/blue/{z}/{x}/{y}'),
-    'Boundaries and Places': L.tileLayer('http://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}').addTo(map)
-  };
-
-  L.control.layers({}, overlayMaps).addTo(map);
-
-  // Start a new pica application, with the given options
-  window.pica = new Pica.Application({
-    magpieUrl: "http://magpie.unepwcmc-005.vm.brightbox.net",
-    projectId: 8,
-    map: map
-  });
-
-  var tileLayerView = pica.showTileLayers();
-
-  var mainController = new Backbone.Controllers.MainController();
-  $('#sidebar').html(mainController.$el);
-
-  $('#search form').submit(function(e) {
-    e.preventDefault();
-
-    $.getJSON('http://nominatim.openstreetmap.org/search', {format: 'json', q: $('#search form #query').val()}, function(data) {
-      if(data.length > 0) {
-        map.fitBounds([
-          [parseFloat(data[0].boundingbox[0]), parseFloat(data[0].boundingbox[2])],
-          [parseFloat(data[0].boundingbox[1]), parseFloat(data[0].boundingbox[3])]
-        ]);
-      }
-    });
-
-    return false;
-  });
-});
 
 /*
 // Upload file (http://stackoverflow.com/questions/6718664/is-it-possible-to-peform-an-asynchronous-cross-domain-file-upload)
