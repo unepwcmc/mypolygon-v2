@@ -14,6 +14,9 @@ class Backbone.Views.AreaView extends Backbone.View
     @area = options.area
     @area.on('sync', @render)
 
+    pica.on('syncStarted', @showLoadingSpinner)
+    pica.on('syncFinished', @hideLoadingSpinner)
+
     @showAreaPolygonsView = window.pica.currentWorkspace.currentArea.newShowAreaPolygonsView()
 
   toggleDrawing: (event) ->
@@ -37,21 +40,20 @@ class Backbone.Views.AreaView extends Backbone.View
 
   onFileUploadSuccess: =>
     @fileView = null
-    @showLoadingSpinner()
     @area.fetch(
       success: (data) ->
-        @hideLoadingSpinner()
         console.log('fetched after file upload')
       error: (a,b,c) ->
-        @hideLoadingSpinner()
         console.log('failed to fetch after file upload')
     )
 
-  showLoadingSpinner: ->
+  showLoadingSpinner: =>
     $('.spinner').show()
+    @showSpinner = true
 
-  hideLoadingSpinner: ->
+  hideLoadingSpinner: =>
     $('.spinner').hide()
+    @showSpinner = false
 
   togglePolygonDetails: (event)->
     $el = $(event.target)
@@ -68,6 +70,9 @@ class Backbone.Views.AreaView extends Backbone.View
     @showAreaPolygonsView.close()
     @area.off('sync', @render)
 
+    pica.off('syncStarted', @showLoadingSpinner)
+    pica.off('syncFinished', @hideLoadingSpinner)
+
   resultsArrToObj: ->
     if @area.get('results')?
       keyedResults = {}
@@ -81,5 +86,7 @@ class Backbone.Views.AreaView extends Backbone.View
   render: =>
     $(@el).html(@template(area: @area, results: @resultsArrToObj()))
     @$el.append(@fileView.el) if @fileView?
+    if @showSpinner?
+      @showLoadingSpinner()
 
     return @

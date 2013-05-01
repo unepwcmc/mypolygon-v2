@@ -10,7 +10,14 @@ class Pica.Events
 
     if event?
       if @events[event]?
-        i
+        if callback?
+          for eventCallback, index in @events[event]
+            if eventCallback == callback
+              @events[event].splice(index, 1)
+              index -= 1
+        else
+          delete @events[event]
+    else
       @events = []
 
   trigger: (event, args) ->
@@ -19,6 +26,10 @@ class Pica.Events
         callback.apply(@, [].concat(args))
 
 class Pica.Model extends Pica.Events
+  throwIfNoApp: ->
+    unless @app?
+      throw "Cannot create a Pica.Model without specifying a Pica.Application"
+
   url: () ->
 
   get: (attribute) ->
@@ -31,7 +42,7 @@ class Pica.Model extends Pica.Events
     @trigger('change')
 
   sync: (options = {}) ->
-    callback = options.success || () ->
+    successCallback = options.success || () ->
 
     # Extend callback to add returned data as model attributes.
     options.success = (data, textStatus, jqXHR) =>
@@ -40,7 +51,15 @@ class Pica.Model extends Pica.Events
         @parse(data)
         @trigger('sync', @)
 
-      callback(@, textStatus, jqXHR)
+      @app.notifySyncFinished()
+      successCallback(@, textStatus, jqXHR)
+
+    errorCallback = options.error || () ->
+
+    # Extend callback to add returned data as model attributes.
+    options.error = (data, textStatus, jqXHR) =>
+      @app.notifySyncFinished()
+      errorCallback(@, textStatus, jqXHR)
 
     if options.type == 'post' or options.type == 'put'
       data = @attributes
@@ -50,6 +69,8 @@ class Pica.Model extends Pica.Events
     # otherwise JQuery will try to parse it on return.
     if options.type == 'delete'
       data = null
+
+    @app.notifySyncStarted()
 
     $.ajax(
       $.extend(
@@ -117,8 +138,12 @@ class Pica.Application extends Pica.Events
     @layers = []
     @fetch()
 
+    # If Leaflet LayerControl activation is delegated
+    # to pica, then show Tile Layers by default.
+    if @config.delegateLayerControl then @showTileLayers()
+
   newWorkspace: ->
-    @currentWorkspace = new Pica.Models.Workspace()
+    @currentWorkspace = new Pica.Models.Workspace(@)
 
   showTileLayers: ->
     new Pica.Views.ShowLayersView(app:@)
@@ -135,8 +160,23 @@ class Pica.Application extends Pica.Events
       @[attr] = val
     @trigger('sync')
 
+  notifySyncStarted: ->
+    @syncsInProgress or= 0
+    @syncsInProgress = @syncsInProgress + 1
+
+    if @syncsInProgress is 1
+      @trigger('syncStarted')
+
+  notifySyncFinished: ->
+    @syncsInProgress or= 0
+    @syncsInProgress = @syncsInProgress - 1
+
+    if @syncsInProgress is 0
+      @trigger('syncFinished')
+
 class Pica.Models.Area extends Pica.Model
-  constructor: (options) ->
+  constructor: (@app) ->
+    @throwIfNoApp()
     @polygons = []
 
     @set('name', 'My Lovely Area')
@@ -176,7 +216,7 @@ class Pica.Models.Area extends Pica.Model
     )
 
   createPolygon: ->
-    @currentPolygon = new Pica.Models.Polygon()
+    @currentPolygon = new Pica.Models.Polygon(@app)
     @addPolygon(@currentPolygon)
 
   # Create a new Pica.Views.UploadPolygonView for this area
@@ -201,7 +241,7 @@ class Pica.Models.Area extends Pica.Model
     if data.polygons?
       @polygons = []
       for polygonAttributes in data.polygons
-        polygon = new Pica.Models.Polygon(attributes:polygonAttributes)
+        polygon = new Pica.Models.Polygon(@app, attributes:polygonAttributes)
         @addPolygon(polygon)
       delete data.polygons
     else
@@ -247,7 +287,8 @@ class Pica.Models.Area extends Pica.Model
       )
 
 class Pica.Models.Polygon extends Pica.Model
-  constructor: (options = {}) ->
+  constructor: (@app, options = {}) ->
+    @throwIfNoApp()
     @attributes = if options.attributes? then options.attributes else {}
     @attributes['geometry'] ||= {type: 'Polygon'}
 
@@ -327,12 +368,14 @@ class Pica.Models.Polygon extends Pica.Model
             }
           ) if options.error?
       )
+
 class Pica.Models.Workspace extends Pica.Model
-  constructor: () ->
+  constructor: (@app, options) ->
+    @throwIfNoApp()
     @attributes = {}
     @areas = []
 
-    @currentArea = new Pica.Models.Area()
+    @currentArea = new Pica.Models.Area(@app)
     @addArea(@currentArea)
 
   url: () ->
@@ -493,22 +536,48 @@ class Pica.Views.ShowLayersView
   constructor: (options) ->
     @app = options.app
     @app.on('sync', @render)
-    @tileLayers = []
-    @render()
+    @tileLayers = {}
+    @layerControl = no
 
+  # For every layer in @app.layers,
+  # we build a @tileLayers object, compatible with the arguments to
+  # L.control.layers, and, if we are not delegating the Layer Control 
+  # functionality to Pica, we simply add every layer to the map in order.
   render: =>
     @removeTileLayers()
+    @removeLayerControl()
     for layer in @app.layers
-      tileLayer = new L.TileLayer(layer.tile_url)
-      @tileLayers.push(tileLayer)
-      tileLayer.addTo(@app.config.map)
+      tileLayer = L.tileLayer(layer.tile_url)
+      @tileLayers[layer.display_name] = tileLayer
+      if not @app.config.delegateLayerControl
+        tileLayer.addTo(@app.config.map)
+    if @app.config.delegateLayerControl
+      @layerControl = @renderLayerControl @app.config.map
 
+  # I we are delegating the Layer Control functionality to Pica:
+  # first merge optional extra overlays from config into @tileLayers and
+  # show first layer with Layer Control.
+  renderLayerControl: (map) ->
+    extraOverlays = @app.config.extraOverlays or {}
+    layers = $.extend @tileLayers, extraOverlays
+    @showFirstOverlay(layers, map)
+    L.control.layers({}, layers).addTo map
+
+  showFirstOverlay: (layers, map) ->
+    for name, layer of layers
+      layer.addTo map
+      return
+ 
   removeTileLayers: =>
-    for tileLayer in @tileLayers
+    for name, tileLayer of @tileLayers
       @app.map.removeLayer(tileLayer)
+
+  removeLayerControl: ->
+    @layerControl?.removeFrom @app.map
 
   close: ->
     @removeTileLayers()
+    @removeLayerControl()
     @app.off('sync', @render)
 
 class Pica.Views.UploadFileView extends Pica.Events
