@@ -20,7 +20,7 @@ $(document).ready ->
   
   # Extra Layers for Pica
   overlayMaps =
-    "Boundaries and Places": L.tileLayer(placesTileLayerUrl)#.addTo(map)
+    "Boundaries and Places": L.tileLayer(placesTileLayerUrl)
   
   # Start a new pica application, with the given options
   window.pica = new Pica.Application(
