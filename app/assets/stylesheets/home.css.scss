@@ -360,10 +360,9 @@ form {
 }
 
 
-.spinner {
+.loading {
   display:none;
-  height:50px;
-  width:50px;
-  margin-left: 125px;
-  margin-top: 50px;
+  position: absolute;
+  top: 250px;
+  right: 160px;
 }

@@ -24,8 +24,8 @@ $(document).ready ->
   
   # Start a new pica application, with the given options
   window.pica = new Pica.Application(
-    magpieUrl: "http://10.1.1.138:3000"
-    projectId: 2
+    magpieUrl: "http://magpie.unepwcmc-005.vm.brightbox.net",
+    projectId: 8
     map: map
     delegateLayerControl: yes
     extraOverlays: overlayMaps
