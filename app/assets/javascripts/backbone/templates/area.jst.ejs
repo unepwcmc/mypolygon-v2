@@ -57,7 +57,7 @@
           polygonResults = results.Details.value[i];
   %>
     <li>
-      <h3 class="aoi-details-header hide">AOI #<%= i %></h3>
+      <h3 class="aoi-details-header hide">AOI #<%= i + 1 %></h3>
       <div class="aoi-details" style="display: none">
         <p>AOI size: <%= roundToDecimals(polygonResults.query_area_km2, 1) %>km<sup>2</sup></p>
         <p>AOI PA coverage: <%= roundToDecimals(polygonResults.sum_pa_cover_km2, 1) %>km<sup>2</sup></p>
