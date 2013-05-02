@@ -16,34 +16,34 @@ body {
 
 #header-strip {
   padding: 7px 10px;
-height: 100px;
-position: relative;
+  height: 100px;
+  position: relative;
   background-image: url("bar-bg.png");
-background-repeat: repeat-x;
+  background-repeat: repeat-x;
 
   h1 {
-	position:absolute;
-	top: 55px;
+    position:absolute;
+    top: 55px;
     font-family: "Oxygen", Arial, sans-serif;
-font-size: 30px;
-font-weight: 400;
+    font-size: 30px;
+    font-weight: 400;
     color: #005c87;
-	display: inline;
+    display: inline;
     text-shadow: 0 1px #ffffff;
     text-decoration: none;
-    margin: 20px;
+    margin: 16px;
   
-	span{
-		font-weight: 700;
-		}
+    span {
+      font-weight: 700;
+    }
 
-	}
+  }
 }
 
 
 #search{
  position: absolute;
- top: 130px;
+ top: 121px;
  left: 0;
  right: 340px;
 z-index: 10;
@@ -88,7 +88,7 @@ z-index: 10;
 
 #map {
   position: absolute;
-  top: 130px;
+  top: 121px;
   bottom: 0;
   left: 0;
   right: 340px;
@@ -192,7 +192,7 @@ z-index: 10;
   position: absolute;
   right: 6px;
   bottom: 7px;
-  top: 156px;
+  top: 158px;
   z-index: -1;
   width: 311px;
 
@@ -248,13 +248,13 @@ z-index: 10;
 #polygon-list {
   position: absolute;
   bottom: 50px;
-  top: 120px;
+  top: 124px;
   overflow: scroll;
   padding: 0;
   width: 312px;
   list-style-type: none;
   font-size: 12px;
-	border-top: 2px solid #005c87;
+  border-top: 2px solid #005c87;
 
 
   > li {

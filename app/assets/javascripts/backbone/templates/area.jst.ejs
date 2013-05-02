@@ -45,48 +45,49 @@
     var paDetails, polygonResults, i, j, il, jl;
     if (typeof results.Details !== 'undefined') {
   %>
-    <li>
-  <% 
+    <% 
       if (results.Details.error_message) {
-  %>
-      <h3>Sorry, there was an error:</h3>
-      <p>Unable to gather protected area stats:</p>
-      <p><%= results.Details.error_message %></p>
-  <%  } else {
-        for (i = 0, il = results.Details.value.length; i < il; i++) {
-          polygonResults = results.Details.value[i];
-  %>
-    <li>
-      <h3 class="aoi-details-header hide">AOI #<%= i + 1 %></h3>
-      <div class="aoi-details" style="display: none">
-        <p>AOI size: <%= roundToDecimals(polygonResults.query_area_km2, 1) %>km<sup>2</sup></p>
-        <p>AOI PA coverage: <%= roundToDecimals(polygonResults.sum_pa_cover_km2, 1) %>km<sup>2</sup></p>
-        <ul class='protected-area-details'>
-  <%
-        for (j = 0, jl = polygonResults.protected_areas.length; j < jl; j++) {
-          paDetails = polygonResults.protected_areas[j];
-          console.log(paDetails);
-  %>
-          <li>
-            <h4><%= paDetails.name %></h4>
-            <a href="http://protectedplanet.net/sites/<%= paDetails.wdpaid %>" target="_blank">View on Protected Planet</a>
-            <p>IUCN Category: <%= paDetails.data_standard.IUCN_CAT %></p>
-            <p>Designation: <%= paDetails.data_standard.DESIG_ENG %></p>
-            <table>
-              <tr>
-                <th>Total Size</th>
-                <th>Size overlap with AOI</th>
-              </tr>
-              <tr>
-                <td><%= roundToDecimals(paDetails.protected_area_km2, 1) %><span class="unit">km2</span></td>
-                <td><%= roundToDecimals(paDetails.query_area_protected_km2, 1) %><span class="unit">km2</span></td>
-              </tr>
-            </table>
-          </li>
-  <%    } %>
-        </ul>
-      </div>
-    </li>
+    %>
+      <li>
+        <h3>Sorry, there was an error:</h3>
+        <p>Unable to gather protected area stats:</p>
+        <p><%= results.Details.error_message %></p>
+      </li>
+    <%  } else {
+          for (i = 0, il = results.Details.value.length; i < il; i++) {
+            polygonResults = results.Details.value[i];
+    %>
+      <li>
+        <h3 class="aoi-details-header hide">AOI #<%= i + 1 %></h3>
+        <div class="aoi-details" style="display: none">
+          <p>AOI size: <%= roundToDecimals(polygonResults.query_area_km2, 2) %>km<sup>2</sup></p>
+          <p>AOI PA coverage: <%= roundToDecimals(polygonResults.sum_pa_cover_km2, 2) %>km<sup>2</sup></p>
+          <ul class='protected-area-details'>
+    <%
+          for (j = 0, jl = polygonResults.protected_areas.length; j < jl; j++) {
+            paDetails = polygonResults.protected_areas[j];
+            console.log(paDetails);
+    %>
+            <li>
+              <h4><%= paDetails.name %></h4>
+              <a href="http://protectedplanet.net/sites/<%= paDetails.wdpaid %>" target="_blank">View on Protected Planet</a>
+              <p>IUCN Category: <%= paDetails.data_standard.IUCN_CAT %></p>
+              <p>Designation: <%= paDetails.data_standard.DESIG_ENG %></p>
+              <table>
+                <tr>
+                  <th>Total Size</th>
+                  <th>Size overlap with AOI</th>
+                </tr>
+                <tr>
+                  <td><%= roundToDecimals(paDetails.protected_area_km2, 2) %><span class="unit">km2</span></td>
+                  <td><%= roundToDecimals(paDetails.query_area_protected_km2, 2) %><span class="unit">km2</span></td>
+                </tr>
+              </table>
+            </li>
+    <%    } %>
+          </ul>
+        </div>
+      </li>
   <%
       }
     }
