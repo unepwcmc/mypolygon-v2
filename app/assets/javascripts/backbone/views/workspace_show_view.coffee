@@ -15,24 +15,25 @@ class Backbone.Views.WorkspaceShowView extends Backbone.View
     @currentTab = new Backbone.Diorama.ManagedRegion()
 
     # Default name for the first area/tab
-    pica.currentWorkspace.areas[0].setName('Area #1')
+    pica_app.currentWorkspace.areas[0].setName('Area #1')
 
   changeTab: (e) ->
     $el = $(e.target)
 
     unless $el.parent().hasClass('active')
-      pica.currentWorkspace.setCurrentArea(pica.currentWorkspace.areas[$el.attr('data-area-id')])
+      pica_app.currentWorkspace.setCurrentArea(pica_app.
+        currentWorkspace.areas[$el.attr('data-area-id')])
       @render()
 
   addArea: ->
-    if pica.currentWorkspace.areas.length <= 3
-      workspace = pica.currentWorkspace
+    if pica_app.currentWorkspace.areas.length <= 3
+      workspace = pica_app.currentWorkspace
 
-      area = new Pica.Models.Area()
-      area.setName("Area ##{pica.currentWorkspace.areas.length + 1}")
+      area = new pica.PicaModelsArea window.pica_app
+      area.setName("Area ##{pica_app.currentWorkspace.areas.length + 1}")
 
       workspace.addArea(area)
-      pica.currentWorkspace.setCurrentArea(area)
+      pica_app.currentWorkspace.setCurrentArea(area)
       @render()
 
   removeArea: ->
@@ -43,7 +44,7 @@ class Backbone.Views.WorkspaceShowView extends Backbone.View
       area.delete()
 
       @currentArea = @areas[@areas.length - 1]
-      pica.currentWorkspace.currentArea = @currentArea
+      pica_app.currentWorkspace.currentArea = @currentArea
       @render()
 
   startRenameArea: (e) ->
@@ -59,7 +60,7 @@ class Backbone.Views.WorkspaceShowView extends Backbone.View
     currentAreaLink.show()
 
     name = currentAreaInput.val()
-    pica.currentWorkspace.currentArea.setName(name)
+    pica_app.currentWorkspace.currentArea.setName(name)
     if name.length > 7
       currentAreaLink.html("#{ name.substr(0,6) }...")
     else
@@ -70,9 +71,9 @@ class Backbone.Views.WorkspaceShowView extends Backbone.View
       @finishRenameArea(e)
 
   render: =>
-    @$el.html(@template(areas: pica.currentWorkspace.areas, currentArea: pica.currentWorkspace.currentArea))
+    @$el.html(@template(areas: pica_app.currentWorkspace.areas, currentArea: pica_app.currentWorkspace.currentArea))
 
-    areaView = new Backbone.Views.AreaView(area: pica.currentWorkspace.currentArea)
+    areaView = new Backbone.Views.AreaView(area: pica_app.currentWorkspace.currentArea)
     @currentTab.showView(areaView)
     @$el.find('#area-tabs').append(@currentTab.$el)
 

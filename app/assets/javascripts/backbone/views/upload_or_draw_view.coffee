@@ -14,7 +14,7 @@ class Backbone.Views.UploadOrDrawView extends Backbone.View
     @$el.html(@template())
 
   triggerShowNewWorkspace: =>
-    window.pica.newWorkspace()
+    window.pica_app.newWorkspace()
     @trigger('showWorkspace')
 
   triggerStartUpload: =>

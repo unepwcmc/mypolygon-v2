@@ -7,7 +7,7 @@ class Backbone.Controllers.MainController extends Backbone.Diorama.Controller
     @$el = @mainRegion.$el
 
     # Default state
-    window.pica.newWorkspace()
+    pica_app.newWorkspace()
     @showWorkspace()
 
   uploadOrDraw: =>

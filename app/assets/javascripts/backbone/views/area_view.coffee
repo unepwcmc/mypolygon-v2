@@ -14,10 +14,11 @@ class Backbone.Views.AreaView extends Backbone.View
     @area = options.area
     @area.on('sync', @render)
 
-    pica.on('syncStarted', @showLoadingSpinner)
-    pica.on('syncFinished', @hideLoadingSpinner)
+    pica_app.on('syncStarted', @showLoadingSpinner)
+    pica_app.on('syncFinished', @hideLoadingSpinner)
 
-    @showAreaPolygonsView = window.pica.currentWorkspace.currentArea.newShowAreaPolygonsView()
+    @showAreaPolygonsView = pica_app
+      .currentWorkspace.currentArea.newShowAreaPolygonsView()
 
   toggleDrawing: (event) ->
     $el = $(event.target)
@@ -70,8 +71,8 @@ class Backbone.Views.AreaView extends Backbone.View
     @showAreaPolygonsView.close()
     @area.off('sync', @render)
 
-    pica.off('syncStarted', @showLoadingSpinner)
-    pica.off('syncFinished', @hideLoadingSpinner)
+    pica_app.off('syncStarted', @showLoadingSpinner)
+    pica_app.off('syncFinished', @hideLoadingSpinner)
 
   resultsArrToObj: ->
     if @area.get('results')?
