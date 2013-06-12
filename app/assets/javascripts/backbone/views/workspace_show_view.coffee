@@ -28,7 +28,7 @@ class Backbone.Views.WorkspaceShowView extends Backbone.View
     if pica.currentWorkspace.areas.length <= 3
       workspace = pica.currentWorkspace
 
-      area = new Pica.Models.Area()
+      area = new Pica.Models.Area(pica)
       area.setName("Area ##{pica.currentWorkspace.areas.length + 1}")
 
       workspace.addArea(area)
