@@ -77,7 +77,7 @@ class Backbone.Views.AreaView extends Backbone.View
     @showSpinner = false
 
   togglePolygonDetails: (event)->
-    $el = $(event.target)
+    $el = $(event.target).closest('h3')
     $el.toggleClass('hide')
     $el.next('.aoi-details').slideToggle()
 

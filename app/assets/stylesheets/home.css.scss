@@ -260,12 +260,28 @@ body {
   h3 {
     margin: 0;
     font-size: 12px;
-    background: url("arrow-down.png") 253px 4px no-repeat;
+
+    span {
+      float: right;
+      color: #005b88;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    span a:before {
+      content: "Less Details";
+    }
+
+    &.hide {
+      span a:before {
+        content: "More Details";
+      }
+    }
   }
 
-  h3.hide {
-    background: url("arrow-left.png") 253px 4px no-repeat;
-  }
 
   p {
     line-height: 1.2em;
