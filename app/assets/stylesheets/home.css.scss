@@ -33,6 +33,27 @@ body {
       font-weight: 700;
     }
   }
+
+  .top-links {
+    position: absolute;
+    right: 20px;
+    top: 82px;
+    font-size: 1.2em;
+
+    a {
+      color: #005c87;
+      font-weight: bold;
+      text-decoration: none;
+
+      &:first-child {
+        margin-right: 15px;
+      }
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
 }
 
 #search {
@@ -195,8 +216,11 @@ body {
   position: absolute;
   bottom: 7px;
 
-  img {
-    margin-right: 10px;
+  a {
+    img {
+      border: none;
+      margin-right: 10px;
+    }
   }
 }
 

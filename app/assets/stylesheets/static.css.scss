@@ -1,0 +1,23 @@
+.static-content {
+  width: 60%;
+  margin: -45px auto;
+  padding-bottom: 40px;
+
+  p {
+    line-height: 1.5em;
+  }
+
+  h1 {
+    font-family: "Oxygen", Arial, sans-serif;
+    font-size: 30px;
+    font-weight: 400;
+    color: #005c87;
+    display: inline;
+    text-shadow: 0 1px #ffffff;
+    text-decoration: none;
+
+    span {
+      font-weight: 700;
+    }
+  }
+}

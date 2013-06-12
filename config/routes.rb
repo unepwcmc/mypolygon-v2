@@ -1,4 +1,7 @@
 MypolygonV2::Application.routes.draw do
+  get "static/terms"
+  get "static/help"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
