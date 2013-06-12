@@ -34,3 +34,23 @@ var roundToDecimals = function(number, places) {
     places = Math.pow(10, places);
     return Math.round(number * places) / places;
 };
+
+var addCommasToNumber = function(number) {
+  value = "" + number;
+
+  if (!/^[0-9]+$/.test(value)) { return value; }
+
+  value = value.split("").reverse();
+
+  // http://stackoverflow.com/a/7125034
+  var comma_value = "";
+  var i = 0;
+  for ( i = 0; i <= value.length-1; i = i + 1 ){
+    comma_value = value[i] + comma_value;
+    if ((i+1) % 3 === 0 && (value.length-1) !== i) {
+      comma_value = ',' + comma_value;
+    }
+  }
+
+  return comma_value;
+};
