@@ -261,6 +261,15 @@ body {
     margin: 0;
     font-size: 12px;
 
+    a.aoi-delete {
+      color: rgb(202, 14, 14);
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
     span {
       float: right;
       color: #005b88;

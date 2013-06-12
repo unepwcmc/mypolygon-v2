@@ -8,6 +8,7 @@ class Backbone.Views.AreaView extends Backbone.View
     'click #add-polygon': 'toggleDrawing'
     'click #add-circle': 'toggleDrawing'
     'click .aoi-details-header': 'togglePolygonDetails'
+    'click .aoi-delete': 'deletePolygon'
     'click #upload-file': 'startUploadFile'
 
   initialize: (options) ->
@@ -80,6 +81,15 @@ class Backbone.Views.AreaView extends Backbone.View
     $el = $(event.target).closest('h3')
     $el.toggleClass('hide')
     $el.next('.aoi-details').slideToggle()
+
+  deletePolygon: (event) ->
+    id = parseInt($(event.target).attr('data-id'), 10)
+    polygon = @area.polygons.filter (poly) -> (poly.get('id') == id)
+
+    if polygon[0]?
+      polygon[0].destroy(
+        success: @render
+      )
 
   removeNewPolygonView: ->
     if @polygonView?
