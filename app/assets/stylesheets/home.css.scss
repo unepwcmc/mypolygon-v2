@@ -2,10 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
-
-
-
 body {
   background-color: #EEEEEE;
   font: 12px Arial, Helvetica, sans-serif;
@@ -32,59 +28,54 @@ body {
     text-shadow: 0 1px #ffffff;
     text-decoration: none;
     margin: 16px;
-  
+
     span {
       font-weight: 700;
     }
-
   }
 }
 
+#search {
+  position: absolute;
+  top: 121px;
+  left: 0;
+  right: 340px;
+  z-index: 10;
 
-#search{
- position: absolute;
- top: 121px;
- left: 0;
- right: 340px;
-z-index: 10;
-	
-	form{
-			position: relative;
-			margin: 0 auto;
-			width: 400px;
-			min-width: 100px;
-			padding: 0 10px 7px 10px;
-			background: #EEEEEE;
-			-webkit-border-bottom-right-radius: 7px;
-			-webkit-border-bottom-left-radius: 7px;
-			border-bottom-right-radius: 7px;
-			border-bottom-left-radius: 7px;
-			
-		#query{
-			background: #fff;
-			width: 270px;
-			padding: 5px;
-		}
-		
-		#search-submit{
-			padding: 0;
-			margin: 0;
-			}	
-	}
+  form {
+    position: relative;
+    margin: 0 auto;
+    width: 400px;
+    min-width: 100px;
+    padding: 0 10px 7px 10px;
+    background: #EEEEEE;
+    -webkit-border-bottom-right-radius: 7px;
+    -webkit-border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 7px;
 
+    #query{
+      background: #fff;
+      width: 270px;
+      padding: 5px;
+
+      &.placeholder {
+        color: #a9a9a9;
+      }
+    }
+
+    #search-submit{
+      padding: 0;
+      margin: 0;
+    }
+  }
 }
-
 
 @media (max-width: 750px) {
-	
-	p{}
-	
-	#search{
-		display: none
-	}
+  #search{
+    display: none
+  }
 }
-
-
 
 #map {
   position: absolute;
@@ -93,7 +84,6 @@ z-index: 10;
   left: 0;
   right: 340px;
 }
-
 
 #sidebar {
   width: 326px;
@@ -119,16 +109,13 @@ z-index: 10;
   background-image: -webkit-linear-gradient(bottom, rgb(0,74,114) 12%, rgb(0,83,124) 67%, rgb(0,91,136) 100%);
   background-image: -ms-linear-gradient(bottom, rgb(0,74,114) 12%, rgb(0,83,124) 67%, rgb(0,91,136) 100%);
 }
+
 .btn:hover {
   background-image: linear-gradient(bottom, rgb(0,91,136) 12%, rgb(0,83,124) 67%, rgb(0,74,114) 100%);
   background-image: -o-linear-gradient(bottom, rgb(0,91,136) 12%, rgb(0,83,124) 67%, rgb(0,74,114) 100%);
   background-image: -moz-linear-gradient(bottom, rgb(0,91,136) 12%, rgb(0,83,124) 67%, rgb(0,74,114) 100%);
   background-image: -webkit-linear-gradient(bottom, rgb(0,91,136) 12%, rgb(0,83,124) 67%, rgb(0,74,114) 100%);
   background-image: -ms-linear-gradient(bottom, rgb(0,91,136) 12%, rgb(0,83,124) 67%, rgb(0,74,114) 100%);
-}
-
-.btn.btn-primary{
-
 }
 
 .btn.btn-large {
@@ -180,6 +167,7 @@ z-index: 10;
   border: 1px solid #CCC;
   border-bottom: 0px;
   margin-top: 0;
+
   a {
     color: #333;
   }
@@ -215,36 +203,41 @@ z-index: 10;
 #poly-stat-list {
   margin: 20px 0 5px 0;
   padding-left: 0;
-	border-top: 2px solid #005c87;
-	width: 100%;
-	float: left;
+  border-top: 2px solid #005c87;
+  width: 100%;
+  float: left;
 
   li {
     overflow:hidden;
     font-size: 13px;
     padding: 3px 0px;
-	margin: 0;
+    margin: 0;
 
     .result {
       float:right;
+
       .error {
         font-weight: bold;
         color: red;
       }
+
       .value {
         font-weight: bold;
         font-size: 20px;
       }
+
       .unit {
         font-size: 10px;
         font-weight: bold;
       }
     }
   }
-	li:first-child{
-		border-bottom: 1px dotted #ccc;
-		}
+
+  li:first-child{
+    border-bottom: 1px dotted #ccc;
+  }
 }
+
 #polygon-list {
   position: absolute;
   bottom: 50px;
@@ -256,73 +249,78 @@ z-index: 10;
   font-size: 12px;
   border-top: 2px solid #005c87;
 
-
   > li {
     padding: 5px ;
   }
+
   > li:nth-child(odd) {
-      background-color: #EEEEEE;
+    background-color: #EEEEEE;
   }
+
   h3 {
     margin: 0;
     font-size: 12px;
     background: url("arrow-down.png") 253px 4px no-repeat;
   }
+
   h3.hide {
     background: url("arrow-left.png") 253px 4px no-repeat;
   }
 
   p {
-	line-height: 1.2em;
-	margin: 0;
+    line-height: 1.2em;
+    margin: 0;
   }
 
   .aoi-details.hide {
     display:none;
-  }	
+  }
 }
 
 .protected-area-details {
   list-style-type: none;
   background-color: #F6F6F6;
   font-size: 10px;
-	padding: 0;
-	margin: 4px 0 0 0;
-	color: #333;
-	
-	li{
-	  border: 1px solid #ccc;
-		padding: 0 0 5px;
-		margin: 0;
-	}
+  padding: 0;
+  margin: 4px 0 0 0;
+  color: #333;
+
+  li{
+    border: 1px solid #ccc;
+    padding: 0 0 5px;
+    margin: 0;
+  }
 
   h4 {
     font-size: 10px;
     padding: 0 0 0 2px;
     margin: 0;
-	background: #ccc;
+    background: #ccc;
   }
+
   a {
     color: #02537a;
     font-size: 10px;
-	padding: 0 14px 0 5px;
+    padding: 0 14px 0 5px;
     font-weight: bold;
     text-decoration: none;
-	background: url("external.png") right no-repeat;
+    background: url("external.png") right no-repeat;
   }
 
   p {
     margin:  0;
-	padding: 0 0 0 5px;
+    padding: 0 0 0 5px;
     font-size: 10px;
   }
 
   table {
-	margin: 10px 0 10px 5px;
+    margin: 10px 0 10px 5px;
     border-collapse: collapse;
+
     td,th {
       padding: 5px;
     }
+
     th {
       background-color: #DDDDDD;
       padding: 5px 3px;
@@ -330,16 +328,19 @@ z-index: 10;
       font-weight: normal;
       font-size: 12px;
     }
+
     td {
       border: 1px solid #DDDDDD;
       border-right: 0;
       font-weight: bold;
       font-size: 18px;
+
       span {
         font-weight: normal;
         font-size: 16px;
       }
     }
+
     td:first-child {
       border-left: 0;
     }
@@ -349,16 +350,16 @@ z-index: 10;
 form {
   .fields {
     overflow: hidden;
+
     label {
       float:left;
     }
+
     input {
       float:right;
     }
   }
-
 }
-
 
 .loading {
   display:none;

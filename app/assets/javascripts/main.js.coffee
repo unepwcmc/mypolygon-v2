@@ -17,7 +17,7 @@ $(document).ready ->
     zoom: 4
   )
   tileLayer = new L.TileLayer(baseTileLayerUrl).addTo(map)
-  
+
   # Extra Layers for Pica
   overlayMaps =
     "Boundaries and Places": L.tileLayer(placesTileLayerUrl)
