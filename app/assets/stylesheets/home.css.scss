@@ -179,7 +179,7 @@ body {
   padding: 7px;
   position: absolute;
   right: 6px;
-  bottom: 7px;
+  bottom: 85px;
   top: 158px;
   z-index: -1;
   width: 311px;
@@ -187,6 +187,16 @@ body {
   .footer {
     bottom: 10px;
     position: absolute;
+  }
+}
+
+.logos {
+  padding-left: 45px;
+  position: absolute;
+  bottom: 7px;
+
+  img {
+    margin-right: 10px;
   }
 }
 

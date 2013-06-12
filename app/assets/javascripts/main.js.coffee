@@ -16,6 +16,9 @@ $(document).ready ->
     center: [54, 24.5]
     zoom: 4
   )
+
+  (new L.Control.Attribution(prefix: "<img src='/assets/unep-wcmc-logo.png' />", position: "bottomleft")).addTo(map)
+
   tileLayer = new L.TileLayer(baseTileLayerUrl).addTo(map)
 
   # Extra Layers for Pica

@@ -99,8 +99,9 @@
   </ul>
 
 <% } %>
-<% if (area.polygons.length > 0) { %>
-  <div class="footer hidden">
+
+<div class="footer hidden">
+  <% if (area.polygons.length > 0) { %>
     <a href="http://magpie.unepwcmc-005.vm.brightbox.net/areas_of_interest/<%= this.area.get('id') %>.csv" class="btn btn-primary" id="export">Export your report</a>
-  </div>
-<% } %>
+  <% } %>
+</div>
