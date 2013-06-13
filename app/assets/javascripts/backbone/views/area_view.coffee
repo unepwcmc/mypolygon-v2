@@ -27,6 +27,7 @@ class Backbone.Views.AreaView extends Backbone.View
     if @polygonView?
       @removeNewPolygonView()
     else
+      @removeFileUploadView()
       @polygonView = @area["drawNew#{type}View"].call(@area,
         success: () =>
           @removeNewPolygonView()
@@ -36,8 +37,16 @@ class Backbone.Views.AreaView extends Backbone.View
       )
 
   startUploadFile: ->
-    @fileView = @area.newUploadFileView(success:@onFileUploadSuccess)
-    @$el.append(@fileView.el)
+    if @fileView?
+      @removeFileUploadView()
+    else
+      @fileView = @area.newUploadFileView(success:@onFileUploadSuccess)
+      $(@fileView.el).insertBefore(@$el.find('.loading'))
+
+  removeFileUploadView: ->
+    if @fileView?
+      @$el.find(@fileView.el).remove()
+      delete @fileView
 
   onFileUploadSuccess: =>
     @fileView = null
