@@ -3,6 +3,9 @@ require 'capistrano/ext/multistage'
 require 'brightbox/recipes'
 require 'brightbox/passenger'
 
+set :generate_webserver_config, false
+
+
 # The name of your application.  Used for deployment directory and filenames
 # and Apache configs. Should be unique on the Brightbox
 set :application, "mypolygonv2"
