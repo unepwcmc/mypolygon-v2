@@ -53,7 +53,9 @@ put vhost_config, "/tmp/vhost_config"
 sudo "mv /tmp/vhost_config /etc/nginx/sites-available/#{application}"
 sudo "ln -s /etc/nginx/sites-available/#{application} /etc/nginx/sites-enabled/#{application}"
 end
- 
+
+after "deploy:setup", :config_vhost
+
 namespace :deploy do
   desc "Restarting mod_rails with restart.txt"
   task :restart, :roles => :app, :except => { :no_release => true } do
@@ -61,7 +63,5 @@ namespace :deploy do
   end
 end
 
-
-after "deploy:setup", :config_vhost
 
 
