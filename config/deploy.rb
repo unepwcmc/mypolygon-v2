@@ -3,6 +3,11 @@ require 'capistrano/ext/multistage'
 require 'brightbox/recipes'
 require 'brightbox/passenger'
 
+set :generate_webserver_config, false
+
+ssh_options[:forward_agent] = true
+
+
 # The name of your application.  Used for deployment directory and filenames
 # and Apache configs. Should be unique on the Brightbox
 set :application, "mypolygonv2"
@@ -18,6 +23,8 @@ set :repository,  "git@github.com:unepwcmc/mypolygon-v2.git"
 set :scm, :git
 set :scm_username, "unepwcmc-read"
 set :deploy_via, :remote_cache
+
+
 
 ### Other options you can set ##
 # Comma separated list of additional domains for Apache
