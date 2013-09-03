@@ -228,10 +228,8 @@ body {
 #add-circle,
 #upload-file {
   margin: 10px 3px 10px 3px;
-  float: left;
   font-weight: normal;
   font-size: 12px;
-  display: block;
 }
 
 #poly-stat-list {
@@ -239,7 +237,6 @@ body {
   padding-left: 0;
   border-top: 2px solid #005c87;
   width: 100%;
-  float: left;
 
   li {
     overflow:hidden;
@@ -272,13 +269,19 @@ body {
   }
 }
 
-#polygon-list {
+.polygons {
+  bottom: 41px;
   overflow: scroll;
-  padding: 0;
+  position: absolute;
   width: 312px;
+  border-top: 2px solid #005c87;
+}
+
+#polygon-list {
+  padding: 0;
   list-style-type: none;
   font-size: 12px;
-  border-top: 2px solid #005c87;
+  margin: 0;
 
   > li {
     padding: 5px ;
