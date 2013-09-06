@@ -2,10 +2,135 @@
 
 <div class="static-content">
   <h1><span>my</span>polygon</h1>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi et
-  euismod dolor, eget elementum arcu. Morbi pharetra diam at nisi
-  gravida interdum. Aenean vestibulum cursus urna. In sit amet leo ut
-  nisl viverra ultrices. Nulla quis cursus quam. Curabitur at eleifend
-  nibh, sit amet bibendum dui. Vestibulum porta, mi at rutrum interdum,
-  est ante convallis tortor, vitae aliquam risus erat et odio.</p>
+
+  <p>
+    Welcome to mypolygon – the tool which allows you to carry out online analysis
+    with the World Database on Protected Areas.
+  </p>
+
+  <ul>
+    <li>
+      <strong>What is mypolygon?</strong>
+      <p>
+        mypolygon was created to provide Proteus Partners with a tool to
+        conduct online analysis on the protected area spatial data held and maintained
+        by UNEP-WCMC. mypolygon allows users to perform basic analysis of the overlap
+        between areas of interest and protected areas.
+      </p>
+    </li>
+
+    <li>
+      <strong>How do I use mypolygon?</strong>
+      <p>
+        The tool opens on a map interface. In this view it is possible
+        to navigate to an area of interest, or search by location using
+        the search box at the top of the map.
+      </p>
+
+      <p>
+        Once you have navigated ot the location of interest, you can
+        interrogate the data in one of three ways using the window on
+        the right hand side of the map:
+      </p>
+
+      <ul>
+        <li>
+          <em>Add a polygon</em>: This allows you to draw a polygon on the map.
+          Simply click the map screen to add each vertex of your polygon.
+          Once complete, click on the first vertex to close your shape.
+          The analysis begins as soon as your polygon is complete.
+        </li>
+        <li>
+          <em>Add a point:</em> This allows you to draw a circular
+          buffer around a point of interest. Click and drag on the map
+          to create the circular buffer. Release to confirm the buffer.
+          The analysis begins as som as the circular buffer is
+          confirmed. Note that due to the analysis being conducted in an
+          equal area projection, the results may differ slightly from
+          the illustration shown on screen.
+        </li>
+        <li>
+          <em>Upload a file:</em> This allows you to upload a previously
+          preapred file in KML, KMZ or SHP format. The file may contain
+          several polygons for analysis (however please see “What are
+          the limitations of mypolygon’s calculations?” below). Browse
+          for the file on your computer and click “submit”. Once the
+          file is accepted, mypolygon runs the analysis and returns
+          results.
+        </li>
+      </ul>
+
+      <p>
+        At the bottom of the results section, you can export your report
+        for download as a “comma seperated values” or “.csv” file to open
+        in excel or other spreasheet software.
+      </p>
+    </li>
+
+    <li>
+      <strong>How does mypolygon conduct the analysis?</strong>
+
+      <p>
+        Once you draw a polygon, create a buffered point in the tool, or
+        upload a file, mypolygon sends the data to UNEP-WCMC’s servers to
+        perform the analysis. To carry out the analysis, mypolygon
+        re-projects the data you provide into an “equal area projection” –
+        a mapping projection which allows accurate calculations to be
+        carried out on the basis of area.
+      </p>
+    </li>
+
+    <li>
+      <strong>Does mypolygon store uploaded data?</strong>
+      <p>
+        No, the servers which conduct the analysis delete the
+        user-provided data  shortly after the analysis is complete.
+      </p>
+    </li>
+
+    <li>
+      <strong>Which version of the WDPA does mypolygon use?</strong>
+      <p>
+        mypolygon uses the version of the WDPA which is available and visible on <a href="http://protectedplanet.net">protectedplanet.net</a>
+      </p>
+    </li>
+
+    <li>
+      <strong>What are the limitations of mypolygon’s calculations?</strong>
+      <p>
+        mypolygon is analysing user provided data with the WDPA, a dataset
+        which contains almost 200,000 records. Some of these records
+        include very detailed boundary information, and therefore have
+        highly complex geometries. As a result, there are some limitations
+        to the complexity, total size, and total number of protected areas
+        mypolygon can provide analysis for. 
+      </p>
+
+      <p>
+        The following issues may cause mypolygon to return a result.
+      </p>
+
+      <p>
+        If you upload or draw a polygon which;
+      </p>
+
+      <ul>
+        <li>is a very large area;</li>
+        <li>interacts with a very large number of protected areas records; or</li>
+        <li>where the geometries of your polygon or the underlying protected areas are highly complex.</li>
+      </ul>
+    </li>
+
+    <li>
+      <strong>What can I do to ensure my analysis is successful?</strong>
+
+      <p>
+        If your analysis fails, you could try to upload a less
+        complicated geometry, or a file which includes fewer polygons.
+        If your analysis still fails please <a href="mailto:proteus@unep-wcmc.org">contact the team at
+        UNEP-WCMC</a>, who will be happy to help.
+      </p>
+    </li>
+  </ul>
+
 </div>
