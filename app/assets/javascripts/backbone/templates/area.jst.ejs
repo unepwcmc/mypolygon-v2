@@ -57,7 +57,13 @@
         <li>
           <h3>Sorry, there was an error:</h3>
           <p>Unable to gather protected area stats:</p>
-          <p><%= results.Details.error_message %></p>
+          <p>
+            mypolygon was unable to complete your analysis, this may
+            be because the area of analysis is too
+            large or complex. See the <a href="/statis/help">Help
+            section</a> for more information and what you
+            can do.
+          </p>
         </li>
       <%  } else {
             for (i = 0, il = results.Details.value.length; i < il; i++) {
