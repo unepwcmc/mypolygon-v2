@@ -4,7 +4,7 @@ set :domain, "unepwcmc-012.vm.brightbox.net"
 ## List of servers
 server "unepwcmc-012.vm.brightbox.net", :app, :web, :db, :primary => true
 
-set :application, "mypolyon"
+set :application, "mypolygon"
 set :server_name, "mypolygon.unepwcmc-012.vm.brightbox.net"
 set :sudo_user, "rails"
 set :app_port, "80" 
