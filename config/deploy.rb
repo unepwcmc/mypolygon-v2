@@ -10,7 +10,7 @@ ssh_options[:forward_agent] = true
 
 # The name of your application.  Used for deployment directory and filenames
 # and Apache configs. Should be unique on the Brightbox
-set :application, "mypolygonv2"
+set :application, "mypolygon"
 
 # Target directory for the application on the web and app servers.
 set(:deploy_to) { File.join("", "home", user, application) }
