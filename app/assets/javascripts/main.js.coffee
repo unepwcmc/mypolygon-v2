@@ -27,7 +27,7 @@ $(document).ready ->
   
   # Start a new pica application, with the given options
   window.pica = new Pica.Application(
-    magpieUrl: "http://magpie.unepwcmc-005.vm.brightbox.net",
+    magpieUrl: "http://magpie.unep-wcmc.org",
     projectId: 8
     map: map
     delegateLayerControl: yes
